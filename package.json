@@ -1,7 +1,7 @@
-﻿{
+{
   "name": "@easysir10/easy-git",
   "version": "0.2.2",
-  "description": "鍌荤摐寮?git 鏂版墜鍔╂墜 DSH 鎻掍欢锛氫綋妫€銆侀娆￠厤缃€佸厠闅?鎷夊彇銆佽В鍐冲啿绐併€佹彁浜ゃ€佹帹閫侊紝鍏煎 GitLab/GitHub/Gitee 绛変竴鍒?git 宸ュ叿銆?,
+  "description": "傻瓜式 git 新手助手 DSH 插件：体检、首次配置、克隆/拉取、解决冲突、提交、推送，兼容 GitLab/GitHub/Gitee 等一切 git 工具。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
