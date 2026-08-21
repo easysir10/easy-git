@@ -29,9 +29,9 @@ npm install -g github:easysir10/easy-git
 | **Claude Code** | 复制 `skills/easy-git` 到 `~/.claude/skills/easy-git/`（或项目 `.claude/skills/easy-git/`），自动识别 |
 | **Codex** | 方式①：复制到 `~/.codex/skills/easy-git/`；方式②：斜杠命令文件放到 `~/.codex/commands/easy-git.md`（模板见 [codex/easy-git.md](../codex/easy-git.md)），之后输入 `/easy-git 描述` |
 | **Cursor** | 复制到 `~/.cursor/rules/easy-git.mdc`（或项目 `.cursor/rules/`） |
-| **Windsurf** | 复制到 `~/.windsurf/rules/easy-git.md` |
-| **Cline** | 复制到 `~/.clinerules/easy-git.md` |
-| **Gemini CLI / OpenCode / Zed / Qoder / QoderCN / Trae 等** | 统一用**通用 AGENTS.md**：在安装菜单勾选第 7 项，或把 `SKILL.md` 内容追加到项目 `AGENTS.md`（这些 agent 都读它） |
+| **Qoder** | 复制到 `~/.qoder/skills/easy-git/`（skill 自动识别） |
+| **QoderCN** | 复制到 `~/.qoder-cn/skills/easy-git/`（skill 自动识别） |
+| **Gemini CLI / OpenCode / Zed / Trae 等** | 统一用**通用 AGENTS.md**：在安装菜单勾选第 7 项，或把 `SKILL.md` 内容追加到项目 `AGENTS.md`（这些 agent 都读它） |
 | **其他任何 agent** | 把 `SKILL.md` 内容追加到仓库的 `AGENTS.md`，或直接粘贴到系统提示 |
 
 ## easy-git 命令速查（Skill 会优先调用）

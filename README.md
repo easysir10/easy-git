@@ -32,9 +32,9 @@ npm install -g github:easysir10/easy-git
     ☐ 2. Codex（skill + /easy-git 斜杠命令）
     ☐ 3. Claude Code（skill）
     ☑ 4. Cursor（rules）              ← 空格勾选
-    ☐ 5. Windsurf（rules）
-    ☐ 6. Cline（rules）
-    ☑ 7. 通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Qoder / Trae 等）
+    ☐ 5. Qoder（skill）
+    ☐ 6. QoderCN（skill）
+    ☑ 7. 通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Trae 等）
 （回车确认，自动安装；也可按数字切换勾选）
 ```
 

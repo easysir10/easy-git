@@ -431,9 +431,9 @@ const INSTALL_TARGETS = [
   { key: 'codex', label: 'Codex（skill + /easy-git 斜杠命令）' },
   { key: 'claude', label: 'Claude Code（skill）' },
   { key: 'cursor', label: 'Cursor（rules）' },
-  { key: 'windsurf', label: 'Windsurf（rules）' },
-  { key: 'cline', label: 'Cline（rules）' },
-  { key: 'agents', label: '通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Qoder / Trae 等）' },
+  { key: 'qoder', label: 'Qoder（skill）' },
+  { key: 'qodercn', label: 'QoderCN（skill）' },
+  { key: 'agents', label: '通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Trae 等）' },
 ]
 
 // 复选框多选菜单：↑↓/jk 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消 · 数字直接切换
@@ -524,17 +524,12 @@ async function installTarget(key) {
       copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.mdc'))
       return '✅ Cursor：已安装（rules 自动生效）'
     }
-    if (key === 'windsurf') {
-      const dest = resolve(homedir(), '.windsurf', 'rules')
+    if (key === 'qoder' || key === 'qodercn') {
+      const dir = key === 'qoder' ? '.qoder' : '.qoder-cn'
+      const dest = resolve(homedir(), dir, 'skills', 'easy-git')
       mkdirSync(dest, { recursive: true })
-      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.md'))
-      return '✅ Windsurf：已安装（rules 自动生效）'
-    }
-    if (key === 'cline') {
-      const dest = resolve(homedir(), '.clinerules')
-      mkdirSync(dest, { recursive: true })
-      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.md'))
-      return '✅ Cline：已安装（rules 自动生效）'
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'SKILL.md'))
+      return '✅ ' + (key === 'qoder' ? 'Qoder' : 'QoderCN') + '：已安装（skill 自动识别）'
     }
     if (key === 'agents') {
       const dest = resolve(process.cwd(), 'AGENTS.md')
