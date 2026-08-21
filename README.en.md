@@ -2,7 +2,7 @@
 
 🌐 Language: English (this page) · [简体中文](README.md)
 
-> 📖 Demo documents: **[DEMO.en.md](DEMO.en.md)**
+> 📖 Demo documents: **[DEMO.en.md](DEMO.en.md)** ｜ 🧩 Universal Skill (for other agents): **[skills/](skills/README.md)**
 
 A **standard DSH plugin** (Cordis plugin package) that wraps Git operations into a beginner-friendly,
 plain-language assistant for people who have never used Git.

@@ -2,7 +2,7 @@
 
 🌐 语言：简体中文（本页）· [English](README.en.md)
 
-> 📖 演示文档：**[DEMO.md](DEMO.md)**
+> 📖 演示文档：**[DEMO.md](DEMO.md)** ｜ 🧩 通用 Skill（其他 agent 用）：**[skills/](skills/README.md)**
 
 一个**标准 DSH 插件**（Cordis 插件包），把 git 操作包装成新手友好的向导，面向完全不会使用 git 的用户。
 **你不需要会任何命令行命令**——全程大白话问答，助手替你执行所有操作。
