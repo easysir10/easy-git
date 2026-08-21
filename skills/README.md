@@ -24,6 +24,14 @@
 
 ```
 skills/
-└── easy-git/
-    └── SKILL.md    ← 通用 Skill 本体（YAML frontmatter + 完整引导流程 + 安全规则 + 术语词典）
+├── easy-git/
+│   └── SKILL.md    ← 通用 Skill 本体（YAML frontmatter + 完整引导流程 + 安全规则 + 术语词典）
+└── easy-git-install/
+    └── SKILL.md    ← 安装 Skill（让 agent 自动安装插件）
 ```
+
+## 相关文档
+
+- [README](../README.md) —— 项目入口与导航（安装 / CLI / 文档导航）
+- [CHANGELOG](../CHANGELOG.md) —— 更新日志
+- [docs/development.md](../docs/development.md) —— 开发指南

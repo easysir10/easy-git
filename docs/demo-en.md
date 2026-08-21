@@ -7,7 +7,7 @@
 - Version: 0.4.0
 - Repository: https://github.com/easysir10/easy-git
 - Works with: GitLab / GitHub / Gitee — any Git hosting platform
-- Installation: see [README.md](README.md) (two steps: `dsh plugin --profile web add` + register in `cordis.patch.yml`)
+- Installation: see [../README.md](../README.md) (two steps: `dsh plugin --profile web add` + register in `cordis.patch.yml`)
 
 > **Note for international users:** the plugin's built-in reply prompts are currently in Chinese (localization is planned).
 > The dialogue examples below are translated into English so the *flow* is easy to follow.

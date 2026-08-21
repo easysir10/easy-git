@@ -7,7 +7,7 @@
 - 版本：0.4.0
 - 仓库：https://github.com/easysir10/easy-git
 - 适用：GitLab / GitHub / Gitee 等一切 git 托管平台
-- 安装方法：见 [README.md](README.md)（两步：`dsh plugin --profile web add` + 在 `cordis.patch.yml` 登记）
+- 安装方法：见 [../README.md](../README.md)（两步：`dsh plugin --profile web add` + 在 `cordis.patch.yml` 登记）
 
 ---
 
