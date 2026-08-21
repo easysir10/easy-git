@@ -4,7 +4,7 @@
 
 **Beginner-Friendly Git Assistant** — zero command line, plain-language guidance for everything Git
 
-[![version](https://img.shields.io/badge/version-0.3.1-blue)]()
+[![version](https://img.shields.io/badge/version-0.4.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![platform](https://img.shields.io/badge/platform-DSH-orange)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
@@ -71,7 +71,27 @@ curl -fsSL https://raw.githubusercontent.com/easysir10/easy-git/main/install.sh 
 
 The script handles everything: **install pnpm → install the plugin → register the startup list**. All you need afterward is to **restart dsh**.
 
-### 📋 Manual install (to understand how it works)
+### 💻 CLI (zero-dependency command line, usable by any agent)
+
+**No DSH required** — the same logic as the plugin (plain Chinese + safety rails), perfect for agents like Claude Code / Cursor to call via their "run command" ability, and for humans in a terminal:
+
+```bash
+# Run straight from the repo (zero deps, just needs node)
+node bin/easy-git.mjs status          # health check
+node bin/easy-git.mjs commit -m "msg" # commit
+node bin/easy-git.mjs conflict        # resolve conflicts
+node bin/easy-git.mjs log             # history
+```
+
+```bash
+# Install globally, then use the easy-git command
+npm install -g github:easysir10/easy-git
+easy-git status
+```
+
+> Full command reference is at the top of [bin/easy-git.mjs](bin/easy-git.mjs); the universal Skill already prefers calling it.
+
+## 📋 Manual install (to understand how it works)
 
 > [!IMPORTANT]
 > Install pnpm first (the downloader behind `dsh plugin`): `npm install -g pnpm`

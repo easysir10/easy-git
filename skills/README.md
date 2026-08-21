@@ -1,6 +1,6 @@
 # 🧩 通用 Skill：easy-git（跨 agent 使用）
 
-[![version](https://img.shields.io/badge/version-0.3.1-blue)]() [![framework](https://img.shields.io/badge/framework-agnostic-green)]()
+[![version](https://img.shields.io/badge/version-0.4.0-blue)]() [![framework](https://img.shields.io/badge/framework-agnostic-green)]()
 
 `easy-git/SKILL.md` 是**框架无关**的新手友好 git 向导：任何会执行 shell 命令的 agent 都能用，
 不需要 DSH，不依赖任何特定插件系统。同一份文件，按下面方式装进不同 agent。
@@ -17,7 +17,7 @@
 ## 通用说明
 
 - Skill 是**引导层**：它定义"把用户当新手、流程怎么走、安全规则"，实际命令由 agent 执行。
-- 如果环境里有 `easy-git` CLI（规划中），Skill 会优先调用它；没有就用内置的 git 命令，效果一致。
+- 环境里有 `easy-git` **CLI**（仓库 `bin/easy-git.mjs`，零依赖）时，Skill 会优先调用它；没有就用内置的 git 命令，效果一致。
 - 与 DSH 插件**共用同一套偏好**（平台存在 `git config --global easygit.platform`），同一台机器两个方案混用也不冲突。
 
 ## 目录

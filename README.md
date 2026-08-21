@@ -4,7 +4,7 @@
 
 **新手友好的 Git 助手** —— 零命令行、全程大白话，带你完成所有 git 操作
 
-[![version](https://img.shields.io/badge/version-0.3.1-blue)]()
+[![version](https://img.shields.io/badge/version-0.4.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![platform](https://img.shields.io/badge/platform-DSH-orange)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
@@ -71,7 +71,27 @@ curl -fsSL https://raw.githubusercontent.com/easysir10/easy-git/main/install.sh 
 
 脚本自动完成：**装 pnpm → 装插件 → 登记启动清单**，装完你只需要**重启 dsh**。
 
-### 📋 手动安装（了解原理用）
+### 💻 CLI（零依赖命令行版，任何 agent 都能调用）
+
+**不用 DSH 也能用** —— 与插件同一套逻辑（友好中文 + 防呆），适合 Claude Code / Cursor 等 agent 通过"执行命令"调用，人类也能在终端直接用：
+
+```bash
+# 仓库内直接跑（零依赖，只要有 node）
+node bin/easy-git.mjs status          # 体检
+node bin/easy-git.mjs commit -m "说明" # 提交
+node bin/easy-git.mjs conflict        # 解决冲突
+node bin/easy-git.mjs log             # 提交历史
+```
+
+```bash
+# 全局安装后直接用 easy-git 命令
+npm install -g github:easysir10/easy-git
+easy-git status
+```
+
+> 完整命令见 [bin/easy-git.mjs](bin/easy-git.mjs) 顶部的用法说明；通用 Skill 已默认优先调用它。
+
+## 📋 手动安装（了解原理用）
 
 > [!IMPORTANT]
 > 先安装 pnpm（`dsh plugin` 的下载器）：`npm install -g pnpm`
