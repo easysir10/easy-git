@@ -37,7 +37,7 @@ const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 // 首次运行标记：装完 CLI 后第一次执行 easy-git 自动弹出"选择 agent"菜单
 const SETUP_MARKER = resolve(homedir(), '.easy-git-setup')
 
-const VERSION = '0.5.0'
+const VERSION = '0.6.0'
 
 // ---------- 参数解析 ----------
 function parse(argv) {
@@ -86,7 +86,7 @@ function usage() {
   easy-git log [目录] [-n 10]                      提交历史
   easy-git undo [目录] [--confirm]                 撤销上一次提交（保留代码）
   easy-git branch [目录] [list|create NAME|switch NAME|merge NAME]
-  easy-git install [dsh,codex,claude,cursor,agents|all]  交互式安装：选择要装的 agent
+  easy-git install [dsh,codex,claude,cursor,qoder,qodercn,agents|all]  交互式安装：选择要装的 agent
   easy-git help | --version
 `)
 }
@@ -429,10 +429,10 @@ async function cmdBranch(dir, args) {
 const INSTALL_TARGETS = [
   { key: 'dsh', label: 'DSH 插件（DeepSeek Harness）' },
   { key: 'codex', label: 'Codex（skill + /easy-git 斜杠命令）' },
-  { key: 'claude', label: 'Claude Code（skill）' },
-  { key: 'cursor', label: 'Cursor（rules）' },
-  { key: 'qoder', label: 'Qoder（skill）' },
-  { key: 'qodercn', label: 'QoderCN（skill）' },
+  { key: 'claude', label: 'Claude Code（skill + /easy-git 斜杠命令）' },
+  { key: 'cursor', label: 'Cursor（rules + /easy-git 斜杠命令）' },
+  { key: 'qoder', label: 'Qoder（skill + /easy-git 斜杠命令）' },
+  { key: 'qodercn', label: 'QoderCN（skill + /easy-git 斜杠命令）' },
   { key: 'agents', label: '通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Trae 等）' },
 ]
 
@@ -513,23 +513,32 @@ async function installTarget(key) {
       return '✅ Codex：已安装（skill + /easy-git 斜杠命令，重启 Codex 生效）'
     }
     if (key === 'claude') {
-      const dest = resolve(homedir(), '.claude', 'skills', 'easy-git')
-      mkdirSync(dest, { recursive: true })
-      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'SKILL.md'))
-      return '✅ Claude Code：已安装（自动识别 skill）'
+      const skillDest = resolve(homedir(), '.claude', 'skills', 'easy-git')
+      mkdirSync(skillDest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(skillDest, 'SKILL.md'))
+      const cmdDest = resolve(homedir(), '.claude', 'commands')
+      mkdirSync(cmdDest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'codex', 'easy-git.md'), resolve(cmdDest, 'easy-git.md'))
+      return '✅ Claude Code：已安装（skill + /easy-git 斜杠命令，重启 Claude Code 生效）'
     }
     if (key === 'cursor') {
-      const dest = resolve(homedir(), '.cursor', 'rules')
-      mkdirSync(dest, { recursive: true })
-      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.mdc'))
-      return '✅ Cursor：已安装（rules 自动生效）'
+      const ruleDest = resolve(homedir(), '.cursor', 'rules')
+      mkdirSync(ruleDest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(ruleDest, 'easy-git.mdc'))
+      const cmdDest = resolve(homedir(), '.cursor', 'commands')
+      mkdirSync(cmdDest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'command', 'easy-git.md'), resolve(cmdDest, 'easy-git.md'))
+      return '✅ Cursor：已安装（rules + /easy-git 斜杠命令，重启 Cursor 生效）'
     }
     if (key === 'qoder' || key === 'qodercn') {
       const dir = key === 'qoder' ? '.qoder' : '.qoder-cn'
-      const dest = resolve(homedir(), dir, 'skills', 'easy-git')
-      mkdirSync(dest, { recursive: true })
-      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'SKILL.md'))
-      return '✅ ' + (key === 'qoder' ? 'Qoder' : 'QoderCN') + '：已安装（skill 自动识别）'
+      const skillDest = resolve(homedir(), dir, 'skills', 'easy-git')
+      mkdirSync(skillDest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(skillDest, 'SKILL.md'))
+      const cmdDest = resolve(homedir(), dir, 'commands')
+      mkdirSync(cmdDest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'command', 'easy-git.md'), resolve(cmdDest, 'easy-git.md'))
+      return '✅ ' + (key === 'qoder' ? 'Qoder' : 'QoderCN') + '：已安装（skill + /easy-git 斜杠命令，重启 ' + (key === 'qoder' ? 'Qoder' : 'QoderCN') + ' 生效）'
     }
     if (key === 'agents') {
       const dest = resolve(process.cwd(), 'AGENTS.md')
@@ -578,7 +587,7 @@ async function cmdInstall(argv) {
   console.log('')
   console.log(results.join('\n'))
   console.log('')
-  console.log('提示：DSH 装完需重启 dsh；Codex 装完需重启 Codex；其他自动生效。')
+  console.log('提示：DSH 装完需重启 dsh；其他 agent 重启后即可用 /easy-git 斜杠命令或自动生效。')
   try { writeFileSync(SETUP_MARKER, 'easy-git v' + VERSION + '\n', 'utf8') } catch (e) { /* ignore */ }
 }
 

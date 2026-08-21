@@ -1,6 +1,6 @@
 # 🧩 通用 Skill：easy-git（跨 agent 使用）
 
-[![version](https://img.shields.io/badge/version-0.5.0-blue)]() [![framework](https://img.shields.io/badge/framework-agnostic-green)]()
+[![version](https://img.shields.io/badge/version-0.6.0-blue)]() [![framework](https://img.shields.io/badge/framework-agnostic-green)]()
 
 `easy-git/SKILL.md` 是**框架无关**的新手友好 git 向导：任何会执行 shell 命令的 agent 都能用，
 不需要 DSH，不依赖任何特定插件系统。同一份文件，按下面方式装进不同 agent。
@@ -9,10 +9,14 @@
 
 | 目标 | 怎么装 |
 | --- | --- |
-| **Claude Code** | 把 `easy-git` 文件夹复制到项目的 `.claude/skills/easy-git/`（或全局 `~/.claude/skills/easy-git/`），Claude Code 会自动识别 frontmatter（name/description）并按需加载 |
-| **Cursor** | 把 `SKILL.md` 内容存为 `.cursor/rules/easy-git.mdc`（规则触发时生效）；或在对话中直接说"按 easy-git 的方式帮我处理 git"并贴入要点 |
-| **Codex CLI / OpenCode / Zed 等** | 把 `SKILL.md` 内容追加到仓库的 `AGENTS.md`（这些 agent 启动时自动读取） |
+| **Claude Code** | skill：把 `easy-git` 文件夹复制到项目的 `.claude/skills/easy-git/`（或全局 `~/.claude/skills/easy-git/`），Claude Code 会自动识别 frontmatter（name/description）并按需加载；斜杠命令：复制 [codex/easy-git.md](../codex/easy-git.md) 到 `~/.claude/commands/easy-git.md`，输入 `/easy-git 描述` |
+| **Cursor** | rules：把 `SKILL.md` 内容存为 `.cursor/rules/easy-git.mdc`（规则触发时生效）；斜杠命令：复制 [command/easy-git.md](../command/easy-git.md) 到 `~/.cursor/commands/easy-git.md`，输入 `/easy-git 描述` |
+| **Codex** | skill：复制到 `~/.codex/skills/easy-git/`；斜杠命令：复制 [codex/easy-git.md](../codex/easy-git.md) 到 `~/.codex/commands/easy-git.md`，输入 `/easy-git 描述` |
+| **Qoder / QoderCN** | skill：复制到 `~/.qoder/skills/easy-git/`（QoderCN 用 `~/.qoder-cn/skills/`）；斜杠命令：复制 [command/easy-git.md](../command/easy-git.md) 到 `~/.qoder/commands/easy-git.md`（QoderCN 用 `~/.qoder-cn/commands/`），输入 `/easy-git 描述` |
+| **Gemini CLI / OpenCode / Zed 等** | 把 `SKILL.md` 内容追加到仓库的 `AGENTS.md`（这些 agent 启动时自动读取） |
 | **其他任何 agent** | 直接把 `SKILL.md` 全文粘贴到它的系统提示 / 项目说明里即可——文件内容自包含，无外部依赖 |
+
+> 推荐直接用安装器：`easy-git install`（勾选即自动装好 skill + 斜杠命令），详见 [docs/use-skill.md](../docs/use-skill.md)。
 
 ## 通用说明
 

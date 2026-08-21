@@ -2,6 +2,12 @@
 
 本项目版本演进记录。版本号语义：`0.x.0` 加功能，`0.x.y` 修问题/完善细节。
 
+## 0.6.0（2026-08-21）
+
+- 🆕 **所有 agent 支持 `/easy-git 描述` 斜杠命令**（与 Codex 一致）：Claude Code（`~/.claude/commands/`）、Cursor（`~/.cursor/commands/`）、Qoder（`~/.qoder/commands/`）、QoderCN（`~/.qoder-cn/commands/`），安装器勾选即自动装好
+- 🆕 新增纯 Markdown 斜杠命令模板 `command/easy-git.md`：Cursor / Qoder / QoderCN 的斜杠命令不接受 frontmatter，与带 frontmatter 的 `codex/easy-git.md`（Codex / Claude Code 用）区分，安装器自动选对模板
+- ✏️ 安装菜单标签更新：Claude Code / Cursor / Qoder / QoderCN 均标注"skill/rules + /easy-git 斜杠命令"
+
 ## 0.5.0（2026-08-21）
 
 - 🆕 新增**交互式安装器**：`easy-git install` 复选框菜单（↑↓ 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消），支持 7 个目标：DSH 插件 / Codex / Claude Code / Cursor / Qoder / QoderCN / 通用 AGENTS.md（Gemini CLI、OpenCode、Zed、Trae 等）

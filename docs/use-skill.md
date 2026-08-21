@@ -1,6 +1,6 @@
-# 其他 agent：Codex / Claude Code / Cursor / QoderCN 等
+# 其他 agent：Codex / Claude Code / Cursor / Qoder / QoderCN 等
 
-> 在 **DSH 之外**的常见 agent 里使用 easy-git：通过统一安装器勾选目标，自动装好 **Skill**（自包含说明文件），
+> 在 **DSH 之外**的常见 agent 里使用 easy-git：通过统一安装器勾选目标，自动装好 **Skill**（自包含说明文件）和 **`/easy-git` 斜杠命令**，
 > agent 读了就会按新手友好的方式引导你完成所有 git 操作。
 
 ## Skill 是什么
@@ -14,25 +14,34 @@
 
 > Skill 会优先调用 `easy-git` 命令（见文末命令速查）；没有命令时直接用 git 命令，效果一致。
 
+## 斜杠命令 `/easy-git` 是什么
+
+在支持自定义斜杠命令的 agent（**Codex / Claude Code / Cursor / Qoder / QoderCN**）里，
+安装后会生成一条命令：在对话框输入 `/easy-git 描述`（例如 `/easy-git 帮我提交并推送`），
+agent 会按 easy-git 的规则为你完成对应的 git 操作——和 DSH 里"直接说"体验一致。
+
 ## 一键安装（推荐）
 
 ```bash
 npm install -g github:easysir10/easy-git
 ```
 
-**安装完成的那一刻，会自动弹出"选择要安装的 agent"菜单**——勾选 Codex / Claude Code / Cursor 等（或输入 `a` 全装），自动装好；之后随时 `easy-git install` 重选。
+**安装完成的那一刻，会自动弹出"选择要安装的 agent"菜单**——勾选 Codex / Claude Code / Cursor / Qoder / QoderCN 等（或输入 `a` 全装），自动装好 skill + 斜杠命令；之后随时 `easy-git install` 重选。
 
 ## 装到常见 agent（手动方式，了解用）
 
 | Agent | 怎么装 |
 | --- | --- |
-| **Claude Code** | 复制 `skills/easy-git` 到 `~/.claude/skills/easy-git/`（或项目 `.claude/skills/easy-git/`），自动识别 |
-| **Codex** | 方式①：复制到 `~/.codex/skills/easy-git/`；方式②：斜杠命令文件放到 `~/.codex/commands/easy-git.md`（模板见 [codex/easy-git.md](../codex/easy-git.md)），之后输入 `/easy-git 描述` |
-| **Cursor** | 复制到 `~/.cursor/rules/easy-git.mdc`（或项目 `.cursor/rules/`） |
-| **Qoder** | 复制到 `~/.qoder/skills/easy-git/`（skill 自动识别） |
-| **QoderCN** | 复制到 `~/.qoder-cn/skills/easy-git/`（skill 自动识别） |
+| **Claude Code** | skill：复制 `skills/easy-git` 到 `~/.claude/skills/easy-git/`；斜杠命令：复制 [codex/easy-git.md](../codex/easy-git.md) 到 `~/.claude/commands/easy-git.md` |
+| **Codex** | skill：复制到 `~/.codex/skills/easy-git/`；斜杠命令：复制到 `~/.codex/commands/easy-git.md`（模板见 [codex/easy-git.md](../codex/easy-git.md)），之后输入 `/easy-git 描述` |
+| **Cursor** | rules：复制 `skills/easy-git/SKILL.md` 到 `~/.cursor/rules/easy-git.mdc`；斜杠命令：复制 [command/easy-git.md](../command/easy-git.md) 到 `~/.cursor/commands/easy-git.md` |
+| **Qoder** | skill：复制到 `~/.qoder/skills/easy-git/`；斜杠命令：复制 [command/easy-git.md](../command/easy-git.md) 到 `~/.qoder/commands/easy-git.md` |
+| **QoderCN** | skill：复制到 `~/.qoder-cn/skills/easy-git/`；斜杠命令：复制 [command/easy-git.md](../command/easy-git.md) 到 `~/.qoder-cn/commands/easy-git.md` |
 | **Gemini CLI / OpenCode / Zed / Trae 等** | 统一用**通用 AGENTS.md**：在安装菜单勾选第 7 项，或把 `SKILL.md` 内容追加到项目 `AGENTS.md`（这些 agent 都读它） |
 | **其他任何 agent** | 把 `SKILL.md` 内容追加到仓库的 `AGENTS.md`，或直接粘贴到系统提示 |
+
+> 两种模板的区别：`codex/easy-git.md` 带 frontmatter（Codex / Claude Code 支持），
+> `command/easy-git.md` 是纯 Markdown（Cursor / Qoder / QoderCN 的斜杠命令不接受 frontmatter）。安装器会自动选对。
 
 ## easy-git 命令速查（Skill 会优先调用）
 

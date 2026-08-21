@@ -4,7 +4,7 @@
 
 **新手友好的 Git 助手** —— 一条命令安装，选择要用的 agent，自动装好
 
-[![version](https://img.shields.io/badge/version-0.5.0-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-%E4%B8%AD%E6%96%87%20%7C%20English-lightgrey)]()
@@ -30,10 +30,10 @@ npm install -g github:easysir10/easy-git
 🎯 选择要安装的 agent（↑↓ 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消）
   ➜ ☐ 1. DSH 插件（DeepSeek Harness）
     ☐ 2. Codex（skill + /easy-git 斜杠命令）
-    ☐ 3. Claude Code（skill）
-    ☑ 4. Cursor（rules）              ← 空格勾选
-    ☐ 5. Qoder（skill）
-    ☐ 6. QoderCN（skill）
+    ☐ 3. Claude Code（skill + /easy-git 斜杠命令）
+    ☑ 4. Cursor（rules + /easy-git 斜杠命令）     ← 空格勾选
+    ☐ 5. Qoder（skill + /easy-git 斜杠命令）
+    ☐ 6. QoderCN（skill + /easy-git 斜杠命令）
     ☑ 7. 通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Trae 等）
 （回车确认，自动安装；也可按数字切换勾选）
 ```
@@ -47,8 +47,8 @@ npm install -g github:easysir10/easy-git
 | 你在哪用 | 装完怎么用 | 详情 |
 | --- | --- | --- |
 | 🟦 **DSH**（DeepSeek Harness） | 对助手说"提交 / 拉取 / 推送 / 解决冲突 / 看下 git 现状" | [install-dsh.md](docs/install-dsh.md) |
-| 🟠 **Codex** | 输入 `/easy-git 描述`（skill 也会自动生效） | [use-skill.md](docs/use-skill.md) |
-| 🟪 **Claude Code / Cursor / QoderCN** 等 | skill / rules 自动生效 | [use-skill.md](docs/use-skill.md) |
+| 🟠 **Codex / Claude Code** | 输入 `/easy-git 描述`（skill 也会自动生效） | [use-skill.md](docs/use-skill.md) |
+| 🟪 **Cursor / Qoder / QoderCN** | 输入 `/easy-git 描述`（rules / skill 也会自动生效） | [use-skill.md](docs/use-skill.md) |
 
 > 都装上了也不用管：菜单里没勾的 agent 不受影响，随时可以补装。
 
@@ -67,7 +67,7 @@ npm install -g github:easysir10/easy-git
 | [use-skill.md](docs/use-skill.md) | 🧩 其他 agent：Codex / Claude Code / Cursor / QoderCN |
 | [demo-zh.md](docs/demo-zh.md) / [demo-en.md](docs/demo-en.md) | 👀 演示：小白全流程对话剧本 |
 | [development.md](docs/development.md) | 🛠️ 开发指南：结构 / 约定 / 测试 / 发布 |
-| [CHANGELOG.md](CHANGELOG.md) | 📋 更新日志（0.1 → 0.5） |
+| [CHANGELOG.md](CHANGELOG.md) | 📋 更新日志（0.1 → 0.6） |
 | [skills/README.md](skills/README.md) | 🧩 Skill 目录与说明 |
 | [README.en.md](README.en.md) | 🌐 English version |
 | [AGENTS.md](AGENTS.md) | 🤖 通用 agent 引导（进仓库即生效） |

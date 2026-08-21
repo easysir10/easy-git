@@ -1,10 +1,10 @@
 # 🎬 easy-git Plugin Demo Document
 
-[![version](https://img.shields.io/badge/version-0.5.0-blue)]() [![license](https://img.shields.io/badge/license-MIT-green)]() [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
+[![version](https://img.shields.io/badge/version-0.6.0-blue)]() [![license](https://img.shields.io/badge/license-MIT-green)]() [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 
 > The beginner-friendly Git assistant — someone who has never used Git or a command line can do everything through plain-language conversation.
 
-- Version: 0.5.0
+- Version: 0.6.0
 - Repository: https://github.com/easysir10/easy-git
 - Works with: GitLab / GitHub / Gitee — any Git hosting platform
 - Installation: see [../docs/install-dsh.md](../docs/install-dsh.md) (two steps: `dsh plugin --profile web add` + register in `cordis.patch.yml`)

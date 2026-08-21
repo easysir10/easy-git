@@ -4,7 +4,7 @@
 
 **Beginner-Friendly Git Assistant** — one install command, pick your agents, done
 
-[![version](https://img.shields.io/badge/version-0.5.0-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-lightgrey)]()
@@ -30,10 +30,10 @@ npm install -g github:easysir10/easy-git
 🎯 Choose which agents to install for (↑↓ move · Space toggle · Enter confirm · a all · q cancel)
   ➜ ☐ 1. DSH plugin (DeepSeek Harness)
     ☐ 2. Codex (skill + /easy-git slash command)
-    ☐ 3. Claude Code (skill)
-    ☑ 4. Cursor (rules)                ← Space to check
-    ☐ 5. Qoder (skill)
-    ☐ 6. QoderCN (skill)
+    ☐ 3. Claude Code (skill + /easy-git slash command)
+    ☑ 4. Cursor (rules + /easy-git slash command)   ← Space to check
+    ☐ 5. Qoder (skill + /easy-git slash command)
+    ☐ 6. QoderCN (skill + /easy-git slash command)
     ☑ 7. Universal AGENTS.md (Gemini CLI / OpenCode / Zed / Trae etc.)
 (Enter to confirm and install; number keys also toggle)
 ```
@@ -47,8 +47,8 @@ npm install -g github:easysir10/easy-git
 | You use | After install | Guide |
 | --- | --- | --- |
 | 🟦 **DSH** (DeepSeek Harness) | Tell the assistant "commit / pull / push / resolve conflicts / check my git status" | [install-dsh.md](docs/install-dsh.md) |
-| 🟠 **Codex** | Type `/easy-git description` (skill also activates) | [use-skill.md](docs/use-skill.md) |
-| 🟪 **Claude Code / Cursor / QoderCN** etc. | skill / rules activate automatically | [use-skill.md](docs/use-skill.md) |
+| 🟠 **Codex / Claude Code** | Type `/easy-git description` (skill also activates) | [use-skill.md](docs/use-skill.md) |
+| 🟪 **Cursor / Qoder / QoderCN** | Type `/easy-git description` (rules / skill also activate) | [use-skill.md](docs/use-skill.md) |
 
 > Agents you didn't check are simply untouched — you can add them anytime.
 
@@ -67,7 +67,7 @@ npm install -g github:easysir10/easy-git
 | [use-skill.md](docs/use-skill.md) | 🧩 Other agents: Codex / Claude Code / Cursor / QoderCN |
 | [demo-en.md](docs/demo-en.md) / [demo-zh.md](docs/demo-zh.md) | 👀 Demo: the complete guided flow |
 | [development.md](docs/development.md) | 🛠️ Development: structure / conventions / testing / release |
-| [CHANGELOG.md](CHANGELOG.md) | 📋 Changelog (0.1 → 0.5) |
+| [CHANGELOG.md](CHANGELOG.md) | 📋 Changelog (0.1 → 0.6) |
 | [skills/README.md](skills/README.md) | 🧩 Skill docs & directory |
 | [README.md](README.md) | 🌐 简体中文版 |
 | [AGENTS.md](AGENTS.md) | 🤖 Universal agent guidance (active in this repo) |

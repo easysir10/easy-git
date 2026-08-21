@@ -12,7 +12,8 @@ easy-git/
 ├── skills/
 │   ├── easy-git/SKILL.md            通用 Skill（任何 agent 的新手 git 向导）
 │   └── easy-git-install/SKILL.md    安装 Skill（让 agent 自动安装）
-├── codex/easy-git.md         Codex 斜杠命令模板（/easy-git + 描述）
+├── codex/easy-git.md         Codex / Claude Code 斜杠命令模板（带 frontmatter，/easy-git + 描述）
+├── command/easy-git.md       Cursor / Qoder / QoderCN 斜杠命令模板（纯 Markdown，无 frontmatter）
 ├── AGENTS.md                 通用 agent 引导（easy-git install 也会生成）
 ├── install.ps1 / install.sh  一键安装脚本
 ├── docs/

@@ -1,10 +1,10 @@
 # 🎬 easy-git 插件演示文档
 
-[![version](https://img.shields.io/badge/version-0.5.0-blue)]() [![license](https://img.shields.io/badge/license-MIT-green)]() [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
+[![version](https://img.shields.io/badge/version-0.6.0-blue)]() [![license](https://img.shields.io/badge/license-MIT-green)]() [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 
 > 新手友好的 git 助手 —— 完全不会 git、不会命令行的人，也能靠大白话对话完成所有 git 操作。
 
-- 版本：0.5.0
+- 版本：0.6.0
 - 仓库：https://github.com/easysir10/easy-git
 - 适用：GitLab / GitHub / Gitee 等一切 git 托管平台
 - 安装方法：见 [../docs/install-dsh.md](../docs/install-dsh.md)（两步：`dsh plugin --profile web add` + 在 `cordis.patch.yml` 登记）
