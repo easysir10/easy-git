@@ -31,9 +31,24 @@ else
   echo "[1/3] pnpm 已就绪：v$(pnpm --version)"
 fi
 
-# ② 安装插件到 profile
+# ② 安装插件到 profile（dsh 命令不在 PATH 时（常通过 npx 运行 dsh），直接改 profile 依赖 + pnpm install）
 echo "[2/3] 安装插件到 profile '$PROFILE' ..."
-dsh plugin --profile "$PROFILE" add github:easysir10/easy-git
+PKG_JSON="$PROFILE_DIR/package.json"
+if command -v dsh >/dev/null 2>&1; then
+  dsh plugin --profile "$PROFILE" add github:easysir10/easy-git
+else
+  echo "     未找到 dsh 命令（dsh 常通过 npx 运行），改为直接操作 profile ..."
+  if [ ! -f "$PKG_JSON" ]; then
+    echo "找不到 $PKG_JSON" >&2
+    exit 1
+  fi
+  if grep -q '"@easysir10/easy-git"' "$PKG_JSON"; then
+    echo "     profile 依赖里已有 @easysir10/easy-git（无需重装）。"
+  else
+    sed -i 's/^}$/  ,"@easysir10\/easy-git": "github:easysir10\/easy-git"\n}/' "$PKG_JSON"
+    (cd "$PROFILE_DIR" && pnpm install)
+  fi
+fi
 
 # ③ 登记到 cordis.patch.yml（已有则跳过；文件是 [] 则替换成插件行）
 echo "[3/3] 登记到启动清单 ..."

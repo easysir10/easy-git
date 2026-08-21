@@ -2,6 +2,10 @@
 
 本项目版本演进记录。版本号语义：`0.x.0` 加功能，`0.x.y` 修问题/完善细节。
 
+## 0.6.3（2026-08-21）
+
+- 🔴 修复：DSH 安装不再依赖全局 `dsh` 命令——很多机器 dsh 是通过 `npx @deepseek-ai/dsh` 运行的（PATH 里没有 `dsh`），此前安装器直接调 `dsh plugin add` 会报"dsh 不是内部或外部命令"。现在探测不到 `dsh` 命令时自动改为**直接操作 DSH profile**（写 `package.json` 依赖 + `pnpm install` + 登记 `cordis.patch.yml`，与 `dsh plugin add` 等价）；`install.ps1` / `install.sh` 同步修复
+
 ## 0.6.2（2026-08-21）
 
 - 🔴 修复：**npx 无参数运行不再只看帮助**——之前已装过的机器上 `npx -y github:easysir10/easy-git` 因安装标记存在而只显示帮助文本、不弹菜单；现在检测 npx 环境（包在 `_npx` 缓存目录），**npx 方式每次运行都弹"选 agent"菜单**（可随时重跑重选），全局安装方式保持"首次弹菜单、之后显示帮助"

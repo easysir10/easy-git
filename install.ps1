@@ -32,10 +32,29 @@ if (-not (Get-Command pnpm -ErrorAction SilentlyContinue)) {
   Write-Host ("[1/3] pnpm 已就绪：v" + (pnpm --version)) -ForegroundColor Green
 }
 
-# ② 安装插件到 profile
+# ② 安装插件到 profile（dsh 命令不在 PATH 时（常通过 npx 运行 dsh），直接改 profile 依赖 + pnpm install）
 Write-Host "[2/3] 安装插件到 profile '$ProfileName' ..." -ForegroundColor Yellow
-dsh plugin --profile $ProfileName add github:easysir10/easy-git
-if ($LASTEXITCODE -ne 0) { Write-Error 'dsh plugin add 失败。'; exit 1 }
+$PkgJson = Join-Path $ProfileDir 'package.json'
+if (Get-Command dsh -ErrorAction SilentlyContinue) {
+  dsh plugin --profile $ProfileName add github:easysir10/easy-git
+  if ($LASTEXITCODE -ne 0) { Write-Error 'dsh plugin add 失败。'; exit 1 }
+} else {
+  Write-Host '     未找到 dsh 命令（dsh 常通过 npx 运行），改为直接操作 profile ...' -ForegroundColor Yellow
+  if (-not (Test-Path $PkgJson)) { Write-Error "找不到 $PkgJson"; exit 1 }
+  $Pkg = Get-Content $PkgJson -Raw | ConvertFrom-Json
+  if (-not $Pkg.dependencies) { $Pkg.dependencies = @{} }
+  if ($Pkg.dependencies.'@easysir10/easy-git') {
+    Write-Host '     profile 依赖里已有 @easysir10/easy-git（无需重装）。' -ForegroundColor Green
+  } else {
+    $Pkg.dependencies.'@easysir10/easy-git' = 'github:easysir10/easy-git'
+    $Pkg | ConvertTo-Json -Depth 10 | Set-Content $PkgJson -Encoding UTF8
+    Push-Location $ProfileDir
+    pnpm install
+    $code = $LASTEXITCODE
+    Pop-Location
+    if ($code -ne 0) { Write-Error 'pnpm install 失败。'; exit 1 }
+  }
+}
 
 # ③ 登记到 cordis.patch.yml（已有则跳过；文件是 [] 则替换成插件行）
 Write-Host '[3/3] 登记到启动清单 ...' -ForegroundColor Yellow

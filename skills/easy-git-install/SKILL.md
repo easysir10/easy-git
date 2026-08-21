@@ -41,7 +41,7 @@ npx 会自动下载 easy-git 并**弹出"选择要安装的 agent"菜单**（↑
    （macOS / Linux：`curl -fsSL https://raw.githubusercontent.com/easysir10/easy-git/main/install.sh -o install.sh && bash install.sh`）
 3. **脚本会自动完成**：
    - ① 检查 pnpm，没有就装（`npm install -g pnpm`）
-   - ② `dsh plugin --profile <profile> add github:easysir10/easy-git`
+   - ② 安装插件：有全局 `dsh` 命令 → `dsh plugin --profile <profile> add github:easysir10/easy-git`；**没有 `dsh` 命令（dsh 常通过 npx 运行）→ 脚本自动直接操作 profile**（写 `package.json` 依赖 + `pnpm install`，等价于 dsh plugin add）
    - ③ 把插件行登记进 `$DSH_HOME/profiles/<profile>/cordis.patch.yml`（已登记则跳过）
 4. **最后一步必须由用户手动**：告诉用户“**请重启 dsh**（关掉重新打开）”，并解释原因：“插件在 dsh 启动时加载，重启后生效。”
 

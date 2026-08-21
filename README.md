@@ -4,7 +4,7 @@
 
 **新手友好的 Git 助手** —— 一条命令安装，选择要用的 agent，自动装好
 
-[![version](https://img.shields.io/badge/version-0.6.2-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.3-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-%E4%B8%AD%E6%96%87%20%7C%20English-lightgrey)]()

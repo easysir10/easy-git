@@ -4,7 +4,7 @@
 
 **Beginner-Friendly Git Assistant** — one install command, pick your agents, done
 
-[![version](https://img.shields.io/badge/version-0.6.2-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.3-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-lightgrey)]()

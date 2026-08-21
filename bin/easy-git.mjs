@@ -42,7 +42,7 @@ const IS_NPX = fileURLToPath(import.meta.url).includes('_npx')
 // 首次运行标记：装完 CLI 后第一次执行 easy-git 自动弹出"选择 agent"菜单
 const SETUP_MARKER = resolve(homedir(), '.easy-git-setup')
 
-const VERSION = '0.6.2'
+const VERSION = '0.6.3'
 
 // ---------- 参数解析 ----------
 function parse(argv) {
@@ -488,8 +488,8 @@ function checkboxMenu(items) {
   })
 }
 
-function runShell(cmd) {
-  return spawnSync(cmd, { shell: true, stdio: 'inherit' })
+function runShell(cmd, cwd) {
+  return spawnSync(cmd, { shell: true, stdio: 'inherit', cwd })
 }
 
 async function installTarget(key) {
@@ -499,9 +499,36 @@ async function installTarget(key) {
         console.log('  · 安装 pnpm（dsh plugin 的下载器）...')
         if (runShell('npm install -g pnpm').status !== 0) return '❌ DSH：pnpm 安装失败'
       }
-      if (runShell('dsh plugin --profile web add github:easysir10/easy-git').status !== 0) return '❌ DSH：dsh plugin add 失败'
-      const patch = resolve(homedir(), '.dsh', 'profiles', 'web', 'cordis.patch.yml')
+      const dshHome = process.env.DSH_HOME || resolve(homedir(), '.dsh')
+      const profileDir = resolve(dshHome, 'profiles', 'web')
+      const pkgPath = resolve(profileDir, 'package.json')
+      const patch = resolve(profileDir, 'cordis.patch.yml')
       const block = '\n- insert:\n    - id: git-beginner-helper\n      name: \'@easysir10/easy-git\'\n'
+      // ① 优先用 dsh 命令（全局安装过 dsh CLI 时）
+      const probe = process.platform === 'win32' ? 'where dsh >nul 2>&1' : 'command -v dsh >/dev/null 2>&1'
+      if (runShell(probe).status === 0) {
+        if (runShell('dsh plugin --profile web add github:easysir10/easy-git').status !== 0) return '❌ DSH：dsh plugin add 失败'
+      } else {
+        // ② dsh 命令不存在（dsh 常通过 npx 运行）：直接操作 profile 目录，与 dsh plugin add 等价
+        console.log('  · 未找到 dsh 命令（dsh 通常通过 npx 运行），改为直接操作 DSH profile ...')
+        if (!existsSync(pkgPath)) {
+          return '❌ DSH：找不到 DSH profile（' + profileDir + '）。请确认 dsh 已运行过（DSH_HOME=' + dshHome + '）'
+        }
+        let pkg
+        try { pkg = JSON.parse(readFileSync(pkgPath, 'utf8')) } catch (e) { pkg = null }
+        if (!pkg) return '❌ DSH：无法读取 ' + pkgPath
+        pkg.dependencies = pkg.dependencies || {}
+        const needInstall = !pkg.dependencies['@easysir10/easy-git']
+        if (needInstall) {
+          pkg.dependencies['@easysir10/easy-git'] = 'github:easysir10/easy-git'
+          writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf8')
+          console.log('  · 已把 @easysir10/easy-git 写入 profile 依赖，运行 pnpm install ...')
+          if (runShell('pnpm install', profileDir).status !== 0) return '❌ DSH：pnpm install 失败'
+        } else {
+          console.log('  · profile 依赖里已有 @easysir10/easy-git（无需重装）')
+        }
+      }
+      // ③ 登记 cordis.patch.yml（两种方式共用；已有则跳过）
       if (existsSync(patch)) {
         const c = readFileSync(patch, 'utf8')
         if (!c.includes('git-beginner-helper')) {
