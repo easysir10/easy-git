@@ -49,6 +49,8 @@ function parse(argv) {
   return { opts, positional }
 }
 
+const clean = (s) => String(s == null ? '' : s).split(/\r?\n/).map((x) => x.trim()).filter(Boolean)
+
 const ask = (question) => new Promise((resolve) => {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
   rl.question(question, (a) => { rl.close(); resolve(a.trim()) })
@@ -84,7 +86,19 @@ const REMOTE_RE = /^(https?:\/\/|git@|ssh:\/\/)/i
 // ---------- 各命令 ----------
 async function cmdStatus(dir) {
   const f = await collectFacts(dir)
-  out(statusReport(f, dir))
+  let text = statusReport(f, dir)
+  const stored = await readPlatform()
+  const inferred = f.remotes.length ? inferPlatformFromRemote(f.remotes[0]) : ''
+  if (stored || inferred) {
+    const plat = PLATFORM_INFO[stored || inferred]
+    text += '\n• 引导平台：' + plat.name + '（可随时用 easy-git platform 更换）'
+    if (stored && inferred && stored !== 'other' && inferred !== 'other' && stored !== inferred) {
+      text += '\n⚠️ 你的远程仓库看起来是' + PLATFORM_INFO[inferred].name + '，但当前引导平台是' + PLATFORM_INFO[stored].name + '，两边对不上。\n   要切换：easy-git platform ' + inferred
+    }
+  } else {
+    text += '\n\n🔰 第一次使用 git？先用 easy-git platform github|gitlab|gitee|other 选择平台，之后所有引导都按它来。'
+  }
+  out(text)
 }
 
 async function cmdStart(dir) {
@@ -243,6 +257,11 @@ async function cmdPull(dir, opts) {
   }
   if (f.conflicts.length) out('⚠️ 当前有 ' + f.conflicts.length + ' 个文件还没解决冲突，先解决冲突再拉取。', 1)
   if (f.merging) out('⚠️ 当前正在合并中（还没完成）。先 easy-git commit 完成合并，再拉取。', 1)
+  if (!f.remotes.length && opts.remote) {
+    if (!REMOTE_RE.test(opts.remote)) out('❌ 这个地址看起来不像仓库地址（应以 https:// 或 git@ 开头）。', 1)
+    const add = await gitRun({ args: ['remote', 'add', 'origin', opts.remote], cwd: dir })
+    if (add.exitCode !== 0) out('❌ 绑定远程地址失败：' + cap(add.stderr, 400), 1)
+  }
   if (!f.remotes.length) out('❌ 当前仓库还没绑定远程地址。\n\n用 easy-git setup --remote <克隆链接> 绑定后再拉取。', 1)
   if (!f.hasUpstream && !opts.branch) {
     out('ℹ️ 当前分支（' + f.branch + '）还没和远程建立连接。\n\n先 easy-git push 一次建立连接，或用 easy-git pull --branch <远程分支名> 指定。', 1)
@@ -262,12 +281,12 @@ async function cmdPull(dir, opts) {
   out('❌ 拉取失败：\n【技术报错，助手自己看，不用给用户看】\n' + cap(text, 1000), 1)
 }
 
-async function cmdConflict(dir, args) {
+async function cmdConflict(dir, args, opts) {
   const f = await collectFacts(dir)
   const g = guardEnv(f)
   if (g) out(g.text, 1)
   const action = args[0] || 'list'
-  const file = args[1]
+  const file = args[1] || opts.file
   if (!f.conflicts.length) out('🎉 目前没有冲突，一切正常！')
   if (action === 'list') {
     const lines = ['⚠️ 有 ' + f.conflicts.length + ' 个文件发生了冲突：']
@@ -396,8 +415,6 @@ async function cmdBranch(dir, args) {
   out('未知操作：' + action + '（可选 list / create / switch / merge）', 1)
 }
 
-const clean = (s) => String(s == null ? '' : s).split(/\r?\n/).map((x) => x.trim()).filter(Boolean)
-
 // ---------- 主入口 ----------
 async function main() {
   const argv = process.argv.slice(2)
@@ -415,7 +432,7 @@ async function main() {
       case 'commit': return await cmdCommit(dir, opts)
       case 'push': return await cmdPush(dir)
       case 'pull': return await cmdPull(dir, opts)
-      case 'conflict': return await cmdConflict(dir, positional.slice(1))
+      case 'conflict': return await cmdConflict(dir, positional.slice(1), opts)
       case 'log': return await cmdLog(dir, opts)
       case 'undo': return await cmdUndo(dir, opts)
       case 'branch': return await cmdBranch(dir, positional.slice(1))

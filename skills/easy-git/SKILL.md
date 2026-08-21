@@ -7,6 +7,7 @@ description: 新手友好的 git 向导。当用户提到 git、提交、拉取�
 
 > 本 Skill 与 DSH 插件 easy-git 同一套逻辑，但**不依赖任何框架**：任何会执行 shell 命令的 agent 都能用。
 > 如果环境里存在 `easy-git` 命令，优先用它；否则按本文件用 `git` 命令执行。
+> 对应 CLI 命令：`easy-git status / commit / push / pull / conflict / log / undo / branch / setup / platform / start`。
 
 ## 角色与铁律（每条都要做到）
 

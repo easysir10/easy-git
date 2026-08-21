@@ -123,7 +123,8 @@ export async function collectFacts(cwd) {
   f.userName = name.exitCode === 0 ? name.stdout.trim() : ''
   f.userEmail = email.exitCode === 0 ? email.stdout.trim() : ''
   const st = await gitRun({ args: ['status', '--short', '--branch'], cwd })
-  const lines = cleanLines(st.stdout)
+  // 注意：不能 trim 行首空格，--short 的 "XY 路径" 定宽格式靠它定位；只过滤空行
+  const lines = String(st.stdout).split(/\r?\n/).filter((l) => l.trim().length > 0)
   const head = lines.shift() || ''
   const ab = /\[ahead (\d+)(?:, behind (\d+))?\]/.exec(head)
   if (ab) { f.ahead = +ab[1]; f.behind = ab[2] ? +ab[2] : 0 }
