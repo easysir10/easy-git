@@ -4,7 +4,7 @@
 
 **Beginner-Friendly Git Assistant** — zero command line, plain-language guidance for everything Git
 
-[![version](https://img.shields.io/badge/version-0.4.0-blue)]()
+[![version](https://img.shields.io/badge/version-0.5.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![platform](https://img.shields.io/badge/platform-DSH-orange)]()
 [![cli](https://img.shields.io/badge/CLI-zero--dep-brightgreen)]()
@@ -152,7 +152,7 @@ Framework-agnostic beginner Git guidance, usable by any agent that can run comma
 | [docs/demo-zh.md](docs/demo-zh.md) | 中文演示：小白全流程对话剧本 |
 | [docs/development.md](docs/development.md) | Development guide: structure / conventions / testing / release |
 | [docs/codex-usage.md](docs/codex-usage.md) | Codex slash-command usage guide (/easy-git + description) |
-| [CHANGELOG.md](CHANGELOG.md) | Changelog (0.1 → 0.4) |
+| [CHANGELOG.md](CHANGELOG.md) | Changelog (0.1 → 0.5) |
 | [skills/README.md](skills/README.md) | Universal Skill install guide |
 
 ## 🛠️ Run from source / develop

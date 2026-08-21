@@ -2,6 +2,13 @@
 
 本项目版本演进记录。版本号语义：`0.x.0` 加功能，`0.x.y` 修问题/完善细节。
 
+## 0.5.0（2026-08-21）
+
+- 🆕 新增**交互式安装器**：`easy-git install` 菜单选择要装的 agent（DSH 插件 / Codex / Claude Code / Cursor / AGENTS.md），支持多选与 `all` 一键全装
+- 🆕 Codex 斜杠命令：`/easy-git + 描述`（命令模板 `codex/easy-git.md`，安装器自动放入 `~/.codex/commands/`）
+- 🆕 仓库自带 `AGENTS.md`：任何 agent 进仓库即获得新手 git 引导
+- 📚 文档体系梳理：演示文档归入 `docs/`，新增 `CHANGELOG.md` 与 `docs/development.md`，README 改为导航中枢
+
 ## 0.4.0（2026-08-21）
 
 - 🆕 新增**零依赖 CLI**：`bin/easy-git.mjs` + `src/core.js`，11 个命令（status / start / platform / setup / commit / push / pull / conflict / log / undo / branch），任何 agent 都能通过"执行命令"调用，人类也能在终端直接用

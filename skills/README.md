@@ -1,6 +1,6 @@
 # 🧩 通用 Skill：easy-git（跨 agent 使用）
 
-[![version](https://img.shields.io/badge/version-0.4.0-blue)]() [![framework](https://img.shields.io/badge/framework-agnostic-green)]()
+[![version](https://img.shields.io/badge/version-0.5.0-blue)]() [![framework](https://img.shields.io/badge/framework-agnostic-green)]()
 
 `easy-git/SKILL.md` 是**框架无关**的新手友好 git 向导：任何会执行 shell 命令的 agent 都能用，
 不需要 DSH，不依赖任何特定插件系统。同一份文件，按下面方式装进不同 agent。

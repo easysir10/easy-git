@@ -4,7 +4,7 @@
 
 **新手友好的 Git 助手** —— 零命令行、全程大白话，带你完成所有 git 操作
 
-[![version](https://img.shields.io/badge/version-0.4.0-blue)]()
+[![version](https://img.shields.io/badge/version-0.5.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![platform](https://img.shields.io/badge/platform-DSH-orange)]()
 [![cli](https://img.shields.io/badge/CLI-zero--dep-brightgreen)]()
@@ -152,7 +152,7 @@ easy-git status
 | [docs/demo-en.md](docs/demo-en.md) | English demo：完整的引导流程 |
 | [docs/development.md](docs/development.md) | 开发指南：结构 / 约定 / 测试 / 发布 |
 | [docs/codex-usage.md](docs/codex-usage.md) | Codex 斜杠命令使用指南（/easy-git + 描述） |
-| [CHANGELOG.md](CHANGELOG.md) | 更新日志（0.1 → 0.4） |
+| [CHANGELOG.md](CHANGELOG.md) | 更新日志（0.1 → 0.5） |
 | [skills/README.md](skills/README.md) | 通用 Skill 安装说明 |
 
 ## 🛠️ 从源码开发

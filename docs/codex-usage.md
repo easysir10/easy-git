@@ -7,7 +7,7 @@ Codex（桌面端 / CLI）支持**自定义斜杠命令**：装好 CLI 后，放
 
 ```bash
 npm install -g github:easysir10/easy-git
-easy-git --version   # 验证：应显示 v0.4.0
+easy-git --version   # 验证：应显示 v0.5.0
 ```
 
 > 💡 也可以直接用安装器一步到位：`easy-git install` 按菜单选择 Codex（或输入 `a` 全部安装），

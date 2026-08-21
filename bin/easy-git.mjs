@@ -34,7 +34,7 @@ import {
 // 包根目录（用于定位 skills/、codex/ 等资源；全局安装与仓库内运行都适用）
 const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
-const VERSION = '0.4.0'
+const VERSION = '0.5.0'
 
 // ---------- 参数解析 ----------
 function parse(argv) {

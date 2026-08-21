@@ -8,14 +8,17 @@
 easy-git/
 ├── lib/index.js              DSH 插件本体（Cordis 插件，11 个工具，注册到 ctx.tools）
 ├── src/core.js               CLI 核心：git 执行 / 体检 / 平台（无框架依赖）
-├── bin/easy-git.mjs          CLI 入口（零依赖，11 个命令）
+├── bin/easy-git.mjs          CLI 入口（零依赖：11 个命令 + install 交互式安装器）
 ├── skills/
 │   ├── easy-git/SKILL.md            通用 Skill（任何 agent 的新手 git 向导）
 │   └── easy-git-install/SKILL.md    安装 Skill（让 agent 自动安装）
+├── codex/easy-git.md         Codex 斜杠命令模板（/easy-git + 描述）
+├── AGENTS.md                 通用 agent 引导（easy-git install 也会生成）
 ├── install.ps1 / install.sh  一键安装脚本
 ├── docs/
 │   ├── demo-zh.md / demo-en.md     演示文档（对话剧本）
-│   └── development.md              本文档
+│   ├── development.md              本文档
+│   └── codex-usage.md              Codex 使用指南（斜杠命令）
 ├── CHANGELOG.md              更新日志
 └── README.md / README.en.md  入口与导航
 ```
