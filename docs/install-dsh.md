@@ -8,9 +8,9 @@
 
 ```bash
 npm install -g github:easysir10/easy-git
-easy-git install
-# 菜单里选 1（DSH 插件），或输入 a 全部安装
 ```
+
+安装完成后会自动弹出选择菜单（选 1 = DSH 插件，或输入 `a` 全部安装）；之后随时 `easy-git install` 重选。
 
 ### 方式 B：一句话让 agent 装
 

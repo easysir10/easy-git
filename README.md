@@ -30,7 +30,8 @@
 | 🧩 用 **Codex / Claude Code / Cursor / QoderCN** 等其他 agent | 方式二：通用 Skill | [use-skill.md](docs/use-skill.md) |
 
 > [!TIP]
-> 装好 CLI 后，**第一次运行 `easy-git` 会自动弹出"选择要安装的 agent"菜单**（也可随时 `easy-git install` 重选，或 `easy-git install all` 全装）。
+> [!TIP]
+> `npm install -g github:easysir10/easy-git` **安装完成后会直接弹出"选择要安装的 agent"菜单**，选完自动装好；之后随时 `easy-git install` 重选，或 `easy-git install all` 全装。
 
 ## 🎯 核心亮点
 

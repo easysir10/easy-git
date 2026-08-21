@@ -8,7 +8,8 @@
     "easy-git": "./bin/easy-git.mjs"
   },
   "scripts": {
-    "prepare": "node scripts/install-hint.mjs"
+    "prepare": "node scripts/install-hint.mjs",
+    "postinstall": "node scripts/postinstall.mjs"
   },
   "exports": {
     ".": "./lib/index.js",
