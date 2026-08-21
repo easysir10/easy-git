@@ -17,8 +17,9 @@ easy-git/
 ├── install.ps1 / install.sh  一键安装脚本
 ├── docs/
 │   ├── demo-zh.md / demo-en.md     演示文档（对话剧本）
-│   ├── development.md              本文档
-│   └── codex-usage.md              Codex 使用指南（斜杠命令）
+│   ├── install-dsh.md              方式一：DSH 插件安装与使用
+│   ├── use-skill.md                方式二：通用 Skill（各 agent 安装）
+│   └── development.md              本文档
 ├── CHANGELOG.md              更新日志
 └── README.md / README.en.md  入口与导航
 ```

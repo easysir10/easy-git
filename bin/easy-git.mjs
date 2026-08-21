@@ -460,7 +460,10 @@ async function installTarget(key) {
       const dest = resolve(homedir(), '.codex', 'commands')
       mkdirSync(dest, { recursive: true })
       copyFileSync(resolve(PKG_ROOT, 'codex', 'easy-git.md'), resolve(dest, 'easy-git.md'))
-      return '✅ Codex：已安装（重启 Codex 后用 /easy-git 描述）'
+      const skillDir = resolve(homedir(), '.codex', 'skills', 'easy-git')
+      mkdirSync(skillDir, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(skillDir, 'SKILL.md'))
+      return '✅ Codex：已安装（skill + /easy-git 斜杠命令，重启 Codex 生效）'
     }
     if (key === 'claude') {
       const dest = resolve(homedir(), '.claude', 'skills', 'easy-git')

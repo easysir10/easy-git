@@ -32,6 +32,8 @@ skills/
 
 ## 相关文档
 
-- [README](../README.md) —— 项目入口与导航（安装 / CLI / 文档导航）
+- [README](../README.md) —— 项目入口与导航（两种使用方式）
+- [docs/use-skill.md](../docs/use-skill.md) —— 方式二：通用 Skill（各 agent 安装）
+- [docs/install-dsh.md](../docs/install-dsh.md) —— 方式一：DSH 插件
 - [CHANGELOG](../CHANGELOG.md) —— 更新日志
 - [docs/development.md](../docs/development.md) —— 开发指南

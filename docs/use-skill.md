@@ -1,32 +1,55 @@
-# 通用 Skill 方式（其他 agent）
+# 方式二：通用 Skill（其他 agent：Codex / Claude Code / Cursor / QoderCN 等）
 
-> 不依赖 DSH 的新手 git 向导：任何会执行 shell 命令的 agent（Claude Code / Cursor / Codex…）都能用。
-> 环境里有 `easy-git` 命令时 Skill 会优先调用它；没有就用 git 命令，效果一致。
+> 在 **DSH 之外**的常见 agent 里使用 easy-git 的方式：直接安装一个 **Skill**（自包含的说明文件），
+> agent 读了就会按新手友好的方式引导你完成所有 git 操作。
 
 ## Skill 是什么
 
-一份自包含的说明文件（`skills/easy-git/SKILL.md`），定义：
-- 角色要求：把用户当新手、全程中文大白话、由 agent 执行命令、不让用户输命令/填路径
-- 完整流程：体检 / 首次引导（平台→身份→仓库）/ 提交 / 拉取 / 推送 / 冲突三选一 / 撤销 / 分支 / 历史
-- 防呆规则与技术报错处理、术语词典
+`skills/easy-git/SKILL.md` 一份自包含文件，定义了：
 
-## 装到各 agent
+- **角色要求**：把用户当新手、全程中文大白话、由 agent 执行所有命令、不让用户输命令/填路径
+- **完整流程**：体检 / 首次引导（平台 → 身份 → 仓库）/ 提交 / 拉取 / 推送 / 冲突三选一 / 撤销 / 分支 / 历史
+- **防呆规则**：冲突未解决禁止提交推送、危险操作先确认、技术报错不外露
+- **术语词典**：分支 / 合并 / 上游 / 令牌 等大白话解释
 
-| 目标 | 方法 |
+> Skill 会优先调用 `easy-git` 命令（见文末命令速查）；没有命令时直接用 git 命令，效果一致。
+
+## 装到常见 agent
+
+| Agent | 怎么装 |
 | --- | --- |
-| **Claude Code** | 复制 `skills/easy-git` 到项目的 `.claude/skills/easy-git/`（或全局 `~/.claude/skills/easy-git/`），自动识别 |
-| **Cursor** | 复制到 `~/.cursor/rules/easy-git.mdc`（或项目 `.cursor/rules/`），rules 自动生效 |
-| **Codex** | 用斜杠命令方式（见 [codex-usage.md](codex-usage.md)） |
-| **其他 agent** | 把 `SKILL.md` 内容追加到仓库的 `AGENTS.md`，或直接粘贴到它的系统提示 |
-| **一键搞定** | 装 CLI 后运行 `easy-git install`，按菜单选择（`a` 全装） |
+| **Claude Code** | 复制 `skills/easy-git` 到 `~/.claude/skills/easy-git/`（或项目 `.claude/skills/easy-git/`），自动识别 |
+| **Codex** | 方式①：复制到 `~/.codex/skills/easy-git/`；方式②：斜杠命令文件放到 `~/.codex/commands/easy-git.md`（模板见 [codex/easy-git.md](../codex/easy-git.md)），之后输入 `/easy-git 描述` |
+| **Cursor** | 复制到 `~/.cursor/rules/easy-git.mdc`（或项目 `.cursor/rules/`） |
+| **Qoder / QoderCN** | 复制到对应 agent 的 skills / rules 目录（与 Claude Code 类似）；或把 `SKILL.md` 内容粘贴进它的项目说明 |
+| **其他任何 agent** | 把 `SKILL.md` 内容追加到仓库的 `AGENTS.md`，或直接粘贴到系统提示 |
 
-## 安装 Skill（让 agent 自动装 DSH 插件）
+## 一键安装（推荐）
 
-`skills/easy-git-install/SKILL.md` 是另一个 skill：任何 agent 读了它，就能自动完成
-"装 pnpm → `dsh plugin add` → 登记 cordis.patch.yml → 提示重启"，用户只做最后一步重启。
+装好 CLI 后，运行交互式安装器按菜单选择（`a` 全装）：
+
+```bash
+npm install -g github:easysir10/easy-git
+easy-git install
+```
+
+安装器会自动把 Skill 放到各 agent 的目录（Codex / Claude Code / Cursor），并生成通用 `AGENTS.md`。
+
+## easy-git 命令速查（Skill 会优先调用）
+
+| 命令 | 作用 |
+| --- | --- |
+| `easy-git status` | 体检 |
+| `easy-git start` | "开始使用"引导 |
+| `easy-git platform github\|gitlab\|gitee\|other` | 记住平台 |
+| `easy-git setup [--name X] [--email Y] [--init] [--remote URL]` | 首次配置 |
+| `easy-git commit -m "说明"` | 提交 |
+| `easy-git push` / `easy-git pull [--remote URL]` | 推送 / 拉取克隆 |
+| `easy-git conflict [list\|mine\|theirs\|show\|manual]` | 冲突解决 |
+| `easy-git log` / `easy-git undo --confirm` / `easy-git branch ...` | 历史 / 撤销 / 分支 |
 
 ## 相关
 
-- [README](../README.md)（选择使用方式）
-- [install-cli.md](install-cli.md)（CLI 方式）
-- [install-dsh.md](install-dsh.md)（DSH 插件方式）
+- [install-dsh.md](install-dsh.md)（方式一：DSH 插件）
+- [README](../README.md)（回到选路中枢）
+- [skills/README.md](../skills/README.md)（Skill 目录）

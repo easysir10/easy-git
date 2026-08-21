@@ -15,21 +15,22 @@
 
 ---
 
-**easy-git 用一套逻辑提供多种使用方式**：DSH 插件 · CLI · 通用 Skill · Codex 斜杠命令。
+**easy-git 只有两种使用方式，选一个就行**：
+
+- 🟦 **方式一：DSH 插件** —— 在 DeepSeek Harness 里用（11 个新手友好工具）
+- 🧩 **方式二：通用 Skill** —— 在 Codex / Claude Code / Cursor / QoderCN 等其他 agent 里直接用
+
 **你不需要会任何命令行命令** —— 兼容 GitLab / GitHub / Gitee 等一切 git 托管平台。
 
-## 🧭 我该用哪种方式？
+## 🧭 选哪种方式？
 
-| 你的场景 | 推荐方式 | 入口 |
+| 你的场景 | 方式 | 入口 |
 | --- | --- | --- |
-| 🟦 用 **DSH**（DeepSeek Harness） | DSH 插件（11 个工具） | [install-dsh.md](docs/install-dsh.md) |
-| 🟠 用 **Codex** | 斜杠命令 `/easy-git + 描述` | [codex-usage.md](docs/codex-usage.md) |
-| 🟪 用 **Claude Code / Cursor** 等 | 通用 Skill | [use-skill.md](docs/use-skill.md) |
-| ⬛ 人类终端 / 任何 agent 的命令 | CLI（零依赖） | [install-cli.md](docs/install-cli.md) |
-| 👀 只想看效果 | 演示文档 | [demo-zh.md](docs/demo-zh.md) |
+| 🟦 用 **DSH**（DeepSeek Harness） | 方式一：DSH 插件 | [install-dsh.md](docs/install-dsh.md) |
+| 🧩 用 **Codex / Claude Code / Cursor / QoderCN** 等其他 agent | 方式二：通用 Skill | [use-skill.md](docs/use-skill.md) |
 
 > [!TIP]
-> 最快上手：装好 CLI 后运行 `easy-git install`，按菜单勾选要装的目标，自动完成安装。
+> 其他 agent 一键装：`npm install -g github:easysir10/easy-git` → `easy-git install`，按菜单选目标自动完成。
 
 ## 🎯 核心亮点
 
@@ -42,15 +43,13 @@
 
 | 文档 | 说明 |
 | --- | --- |
-| [install-dsh.md](docs/install-dsh.md) | 🟦 DSH 插件：安装 / 更新 / 11 工具用法 |
-| [install-cli.md](docs/install-cli.md) | ⬛ CLI：安装 / 命令速查 / 交互式安装器 |
-| [use-skill.md](docs/use-skill.md) | 🟪 通用 Skill：装进 Claude Code / Cursor 等 |
-| [codex-usage.md](docs/codex-usage.md) | 🟠 Codex 斜杠命令使用指南 |
+| [install-dsh.md](docs/install-dsh.md) | 🟦 方式一：DSH 插件安装与使用 |
+| [use-skill.md](docs/use-skill.md) | 🧩 方式二：通用 Skill（各 agent 安装 + 命令速查） |
 | [demo-zh.md](docs/demo-zh.md) / [demo-en.md](docs/demo-en.md) | 👀 演示：小白全流程对话剧本 |
 | [development.md](docs/development.md) | 🛠️ 开发指南：结构 / 约定 / 测试 / 发布 |
 | [CHANGELOG.md](CHANGELOG.md) | 📋 更新日志（0.1 → 0.5） |
+| [skills/README.md](skills/README.md) | 🧩 Skill 目录与说明 |
 | [README.en.md](README.en.md) | 🌐 English version |
-| [skills/README.md](skills/README.md) | 🧩 Skill 说明与目录 |
 | [AGENTS.md](AGENTS.md) | 🤖 通用 agent 引导（进仓库即生效） |
 
 ## ⚙️ 实现要点
@@ -75,7 +74,7 @@
 </details>
 
 <details>
-<summary>插件怎么更新？</summary>
+<summary>DSH 插件怎么更新？</summary>
 
 说“更新插件”，助手执行更新命令；然后重启 dsh 生效。详见 [install-dsh.md](docs/install-dsh.md)。
 </details>

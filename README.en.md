@@ -15,21 +15,22 @@
 
 ---
 
-**easy-git offers several ways to use the same logic**: DSH plugin · CLI · Universal Skill · Codex slash command.
+**easy-git has exactly two ways to use it — pick one**:
+
+- 🟦 **Way 1: DSH plugin** — inside DeepSeek Harness (11 beginner-friendly tools)
+- 🧩 **Way 2: Universal Skill** — directly in Codex / Claude Code / Cursor / QoderCN and other agents
+
 **You don't need a single command-line command** — works with GitLab / GitHub / Gitee — any Git hosting platform.
 
-## 🧭 Which way should I use?
+## 🧭 Which way?
 
-| Your situation | Recommended way | Guide |
+| Your situation | Way | Guide |
 | --- | --- | --- |
-| 🟦 Using **DSH** (DeepSeek Harness) | DSH plugin (11 tools) | [install-dsh.md](docs/install-dsh.md) |
-| 🟠 Using **Codex** | Slash command `/easy-git + description` | [codex-usage.md](docs/codex-usage.md) |
-| 🟪 Using **Claude Code / Cursor** etc. | Universal Skill | [use-skill.md](docs/use-skill.md) |
-| ⬛ Terminal / any agent's commands | CLI (zero-dependency) | [install-cli.md](docs/install-cli.md) |
-| 👀 Just want to see it in action | Demo | [demo-en.md](docs/demo-en.md) |
+| 🟦 Using **DSH** (DeepSeek Harness) | Way 1: DSH plugin | [install-dsh.md](docs/install-dsh.md) |
+| 🧩 Using **Codex / Claude Code / Cursor / QoderCN** or other agents | Way 2: Universal Skill | [use-skill.md](docs/use-skill.md) |
 
 > [!TIP]
-> Fastest start: install the CLI, then run `easy-git install` and pick the targets from the menu — it installs automatically.
+> One-click for other agents: `npm install -g github:easysir10/easy-git` → `easy-git install`, pick targets from the menu.
 
 ## 🎯 Highlights
 
@@ -42,15 +43,13 @@
 
 | Doc | What it is |
 | --- | --- |
-| [install-dsh.md](docs/install-dsh.md) | 🟦 DSH plugin: install / update / 11 tools usage |
-| [install-cli.md](docs/install-cli.md) | ⬛ CLI: install / command reference / interactive installer |
-| [use-skill.md](docs/use-skill.md) | 🟪 Universal Skill: install into Claude Code / Cursor etc. |
-| [codex-usage.md](docs/codex-usage.md) | 🟠 Codex slash-command usage guide |
+| [install-dsh.md](docs/install-dsh.md) | 🟦 Way 1: DSH plugin install & usage |
+| [use-skill.md](docs/use-skill.md) | 🧩 Way 2: Universal Skill (per-agent install + command reference) |
 | [demo-en.md](docs/demo-en.md) / [demo-zh.md](docs/demo-zh.md) | 👀 Demo: the complete guided flow |
 | [development.md](docs/development.md) | 🛠️ Development: structure / conventions / testing / release |
 | [CHANGELOG.md](CHANGELOG.md) | 📋 Changelog (0.1 → 0.5) |
-| [README.md](README.md) | 🌐 简体中文版 |
 | [skills/README.md](skills/README.md) | 🧩 Skill docs & directory |
+| [README.md](README.md) | 🌐 简体中文版 |
 | [AGENTS.md](AGENTS.md) | 🤖 Universal agent guidance (active in this repo) |
 
 ## ⚙️ Implementation highlights
@@ -75,7 +74,7 @@ Say "switch to GitHub" or "switch to GitLab" — done, instantly.
 </details>
 
 <details>
-<summary>How do I update the plugin?</summary>
+<summary>How do I update the DSH plugin?</summary>
 
 Say "update the plugin" and the assistant runs the update command; then restart dsh. See [install-dsh.md](docs/install-dsh.md).
 </details>
