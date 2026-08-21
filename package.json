@@ -1,0 +1,27 @@
+{
+  "name": "@easysir10/easy-git",
+  "version": "0.1.0",
+  "description": "傻瓜式 git 新手助手 DSH 插件：体检、首次配置、克隆/拉取、解决冲突、提交、推送，兼容 GitLab/GitHub/Gitee 等一切 git 工具。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "dsh",
+    "plugin",
+    "git",
+    "gitlab",
+    "github",
+    "beginner"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.8"
+  }
+}
