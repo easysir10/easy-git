@@ -34,6 +34,9 @@ import {
 // 包根目录（用于定位 skills/、codex/ 等资源；全局安装与仓库内运行都适用）
 const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
+// 首次运行标记：装完 CLI 后第一次执行 easy-git 自动弹出"选择 agent"菜单
+const SETUP_MARKER = resolve(homedir(), '.easy-git-setup')
+
 const VERSION = '0.5.0'
 
 // ---------- 参数解析 ----------
@@ -510,7 +513,11 @@ async function cmdInstall(argv) {
   }
   const valid = new Set(INSTALL_TARGETS.map((t) => t.key))
   picks = picks.filter((k) => valid.has(k))
-  if (!picks.length) out('未选择任何可安装的目标，退出。', 1)
+  if (!picks.length) {
+    console.log('未选择任何目标，跳过。')
+    try { writeFileSync(SETUP_MARKER, 'easy-git v' + VERSION + '\n', 'utf8') } catch (e) { /* ignore */ }
+    return
+  }
   console.log('')
   const results = []
   for (const k of picks) results.push(await installTarget(k))
@@ -518,14 +525,34 @@ async function cmdInstall(argv) {
   console.log(results.join('\n'))
   console.log('')
   console.log('提示：DSH 装完需重启 dsh；Codex 装完需重启 Codex；其他自动生效。')
+  try { writeFileSync(SETUP_MARKER, 'easy-git v' + VERSION + '\n', 'utf8') } catch (e) { /* ignore */ }
 }
 
 // ---------- 主入口 ----------
+async function firstRun() {
+  console.log('')
+  console.log('👋 欢迎使用 easy-git！')
+  console.log('')
+  if (process.stdin.isTTY) {
+    console.log('第一次使用，先选择要安装到哪些 agent：')
+    await cmdInstall([])
+  } else {
+    console.log('（当前不是交互终端，跳过安装菜单。需要时运行 easy-git install 选择要装的 agent。）')
+    try { writeFileSync(SETUP_MARKER, 'easy-git v' + VERSION + '\n', 'utf8') } catch (e) { /* ignore */ }
+  }
+}
+
 async function main() {
   const argv = process.argv.slice(2)
-  if (!argv.length || argv[0] === 'help' || argv[0] === '-h' || argv[0] === '--help') { usage(); return }
+  if (!argv.length) {
+    if (!existsSync(SETUP_MARKER)) await firstRun()
+    else usage()
+    return
+  }
+  if (argv[0] === 'help' || argv[0] === '-h' || argv[0] === '--help') { usage(); return }
   if (argv[0] === '--version' || argv[0] === '-v') { console.log('easy-git v' + VERSION); return }
   const cmd = argv.shift()
+  if (cmd !== 'install' && !existsSync(SETUP_MARKER)) await firstRun()
   const { opts, positional } = parse(argv)
   const dir = positional[0] || process.cwd()
   try {

@@ -5,6 +5,7 @@
 ## 0.5.0（2026-08-21）
 
 - 🆕 新增**交互式安装器**：`easy-git install` 菜单选择要装的 agent（DSH 插件 / Codex / Claude Code / Cursor / AGENTS.md），支持多选与 `all` 一键全装
+- 🆕 安装体验：`npm install -g` 后**首次运行 `easy-git` 自动弹出 agent 选择菜单**；npm/pnpm 从 git 安装时打印引导提示（prepare 脚本）
 - 🆕 Codex 斜杠命令：`/easy-git + 描述`（命令模板 `codex/easy-git.md`，安装器自动放入 `~/.codex/commands/`）
 - 🆕 仓库自带 `AGENTS.md`：任何 agent 进仓库即获得新手 git 引导
 - 📚 文档体系梳理：明确**只有两种使用方式**（DSH 插件 / 通用 Skill），各一份独立指南（`install-dsh` / `use-skill`），README 改为选路中枢，演示归入 `docs/`，新增 `CHANGELOG.md` 与 `docs/development.md`

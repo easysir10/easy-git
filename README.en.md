@@ -30,7 +30,7 @@
 | 🧩 Using **Codex / Claude Code / Cursor / QoderCN** or other agents | Way 2: Universal Skill | [use-skill.md](docs/use-skill.md) |
 
 > [!TIP]
-> One-click for other agents: `npm install -g github:easysir10/easy-git` → `easy-git install`, pick targets from the menu.
+> After installing the CLI, **the first time you run `easy-git` it automatically shows the "choose agents to install" menu** (you can also re-run `easy-git install` anytime, or `easy-git install all`).
 
 ## 🎯 Highlights
 

@@ -26,11 +26,13 @@
 
 ## 一键安装（推荐）
 
-装好 CLI 后，运行交互式安装器按菜单选择（`a` 全装）：
+装好 CLI 后，**第一次运行 `easy-git` 会自动弹出选择菜单**；也可以手动运行：
 
 ```bash
 npm install -g github:easysir10/easy-git
-easy-git install
+easy-git          # 首次自动弹出"选择要安装的 agent"菜单
+# 或直接指定：easy-git install        # 交互式菜单
+#          easy-git install all       # 全部安装
 ```
 
 安装器会自动把 Skill 放到各 agent 的目录（Codex / Claude Code / Cursor），并生成通用 `AGENTS.md`。

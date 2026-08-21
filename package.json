@@ -7,6 +7,9 @@
   "bin": {
     "easy-git": "./bin/easy-git.mjs"
   },
+  "scripts": {
+    "prepare": "node scripts/install-hint.mjs"
+  },
   "exports": {
     ".": "./lib/index.js",
     "./core": "./src/core.js",
