@@ -7,7 +7,7 @@
 - 🆕 新增**交互式安装器**：`easy-git install` 菜单选择要装的 agent（DSH 插件 / Codex / Claude Code / Cursor / AGENTS.md），支持多选与 `all` 一键全装
 - 🆕 Codex 斜杠命令：`/easy-git + 描述`（命令模板 `codex/easy-git.md`，安装器自动放入 `~/.codex/commands/`）
 - 🆕 仓库自带 `AGENTS.md`：任何 agent 进仓库即获得新手 git 引导
-- 📚 文档体系梳理：演示文档归入 `docs/`，新增 `CHANGELOG.md` 与 `docs/development.md`，README 改为导航中枢
+- 📚 文档体系梳理：按使用方式拆分独立指南（`install-dsh` / `install-cli` / `use-skill` / `codex-usage`），README 改为"选路"中枢，演示归入 `docs/`，新增 `CHANGELOG.md` 与 `docs/development.md`
 
 ## 0.4.0（2026-08-21）
 
