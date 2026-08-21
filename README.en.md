@@ -7,7 +7,6 @@
 [![version](https://img.shields.io/badge/version-0.6.3-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
-[![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-lightgrey)]()
 
 🌐 [English](README.en.md) · [简体中文](README.md)
 
@@ -18,14 +17,11 @@
 **easy-git makes Git beginner-friendly**: you don't need a single command-line command; it works with GitLab / GitHub / Gitee — any Git hosting platform.
 Installation is one command, and you pick which agents to install for (**including DSH**) from a menu.
 
-## 🚀 Install (npx, one command)
+## 🚀 Install
 
 ```bash
 npx -y github:easysir10/easy-git
 ```
-
-> ① Nothing to pre-install — npx downloads and runs easy-git on the fly (to keep it as a permanent command, also run `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`).
-> ② On slow networks use the tarball URL instead: `npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`.
 
 **Running it pops up a selection menu** (↑↓ move · Space toggle · Enter confirm) — pick and it installs; re-run anytime to re-pick:
 
@@ -34,17 +30,16 @@ npx -y github:easysir10/easy-git
   ➜ ☐ 1. DSH plugin (DeepSeek Harness)
     ☐ 2. Codex (skill + /easy-git slash command)
     ☐ 3. Claude Code (skill + /easy-git slash command)
-    ☑ 4. Cursor (rules + /easy-git slash command)   ← Space to check
+    ☐ 4. Cursor (rules + /easy-git slash command)
     ☐ 5. Qoder (skill + /easy-git slash command)
     ☐ 6. QoderCN (skill + /easy-git slash command)
     ☑ 7. Universal AGENTS.md (Gemini CLI / OpenCode / Zed / Trae etc.)
 (Enter to confirm and install; number keys also toggle)
 ```
 
-> [!NOTE]
-> - **Let an agent install it**: give any agent (Claude Code / Cursor / Codex / Qoder / Gemini CLI etc.) the repo URL `https://github.com/easysir10/easy-git` and ask it to run the install command above; or clone the repo and run `node bin/easy-git.mjs install`.
-> - In non-interactive environments (CI etc.) the menu is skipped: run `easy-git install` later, or **the first time you run `easy-git` it will show the menu**.
-> - Re-pick anytime: `easy-git install`; install everything: `easy-git install all`.
+> **Let an agent install it**: give any agent the repo URL `https://github.com/easysir10/easy-git` and ask it to run the command above.
+>
+> **Other ways**: on slow networks use `npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`; to keep it as a permanent command run `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`; in non-interactive environments (CI) the menu is skipped — run `easy-git install` or the first `easy-git` run later.
 
 ## Where & how to use it
 
@@ -53,8 +48,6 @@ npx -y github:easysir10/easy-git
 | 🟦 **DSH** (DeepSeek Harness) | Tell the assistant "commit / pull / push / resolve conflicts / check my git status" | [install-dsh.md](docs/install-dsh.md) |
 | 🟠 **Codex / Claude Code** | Type `/easy-git description` (skill also activates) | [use-skill.md](docs/use-skill.md) |
 | 🟪 **Cursor / Qoder / QoderCN** | Type `/easy-git description` (rules / skill also activate) | [use-skill.md](docs/use-skill.md) |
-
-> Agents you didn't check are simply untouched — you can add them anytime.
 
 ## 🎯 Highlights
 
@@ -68,20 +61,11 @@ npx -y github:easysir10/easy-git
 | Doc | What it is |
 | --- | --- |
 | [install-dsh.md](docs/install-dsh.md) | 🟦 DSH plugin: usage (11 tools) & update |
-| [use-skill.md](docs/use-skill.md) | 🧩 Other agents: Codex / Claude Code / Cursor / QoderCN |
-| [demo-en.md](docs/demo-en.md) / [demo-zh.md](docs/demo-zh.md) | 👀 Demo: the complete guided flow |
+| [use-skill.md](docs/use-skill.md) | 🧩 Other agents: Codex / Claude Code / Cursor / Qoder / QoderCN |
 | [development.md](docs/development.md) | 🛠️ Development: structure / conventions / testing / release |
-| [CHANGELOG.md](CHANGELOG.md) | 📋 Changelog (0.1 → 0.6) |
+| [CHANGELOG.md](CHANGELOG.md) | 📋 Changelog |
 | [skills/README.md](skills/README.md) | 🧩 Skill docs & directory |
-| [README.md](README.md) | 🌐 简体中文版 |
 | [AGENTS.md](AGENTS.md) | 🤖 Universal agent guidance (active in this repo) |
-
-## ⚙️ Implementation highlights
-
-- **Spawns `git.exe` directly** (no shell involved) — no quoting/escaping problems; the Git path resolves via PATH → common install locations
-- **Built-in timeouts & cancellation**; commit messages go through stdin (`git commit -F -`)
-- **Safety rails**: commit/pull/push blocked while conflicts are unresolved; detects `MERGE_HEAD`/`CHERRY_PICK_HEAD`/`REBASE_HEAD`, so an in-progress merge can be finished with a commit
-- **Plain Chinese prompts** that treat the user as a complete Git beginner
 
 ## ❓ FAQ
 
@@ -89,12 +73,6 @@ npx -y github:easysir10/easy-git
 <summary>I can't use the command line. Is this for me?</summary>
 
 Absolutely. Even installing is just one copy-paste command; after that you only need to talk, choose, paste links, and click website buttons.
-</details>
-
-<details>
-<summary>What if I switch platforms?</summary>
-
-Say "switch to GitHub" or "switch to GitLab" — done, instantly.
 </details>
 
 <details>

@@ -17,7 +17,6 @@ easy-git/
 ├── AGENTS.md                 通用 agent 引导（easy-git install 也会生成）
 ├── install.ps1 / install.sh  一键安装脚本
 ├── docs/
-│   ├── demo-zh.md / demo-en.md     演示文档（对话剧本）
 │   ├── install-dsh.md              方式一：DSH 插件安装与使用
 │   ├── use-skill.md                方式二：通用 Skill（各 agent 安装）
 │   └── development.md              本文档

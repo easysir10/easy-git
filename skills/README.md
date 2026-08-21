@@ -1,43 +1,32 @@
 # 🧩 通用 Skill：easy-git（跨 agent 使用）
 
-[![version](https://img.shields.io/badge/version-0.6.3-blue)]() [![framework](https://img.shields.io/badge/framework-agnostic-green)]()
-
-`easy-git/SKILL.md` 是**框架无关**的新手友好 git 向导：任何会执行 shell 命令的 agent 都能用，
-不需要 DSH，不依赖任何特定插件系统。同一份文件，按下面方式装进不同 agent。
+`easy-git/SKILL.md` 是**框架无关**的新手友好 git 向导：任何会执行 shell 命令的 agent 都能用，不需要 DSH、不依赖特定插件系统。
 
 ## 安装到各 agent
 
+> 推荐直接用安装器：`npx -y github:easysir10/easy-git`，运行即弹菜单勾选 agent，自动装好 skill + `/easy-git` 斜杠命令。详见 [docs/use-skill.md](../docs/use-skill.md)。
+
 | 目标 | 怎么装 |
 | --- | --- |
-| **Claude Code** | skill：把 `easy-git` 文件夹复制到项目的 `.claude/skills/easy-git/`（或全局 `~/.claude/skills/easy-git/`），Claude Code 会自动识别 frontmatter（name/description）并按需加载；斜杠命令：复制 [codex/easy-git.md](../codex/easy-git.md) 到 `~/.claude/commands/easy-git.md`，输入 `/easy-git 描述` |
-| **Cursor** | rules：把 `SKILL.md` 内容存为 `.cursor/rules/easy-git.mdc`（规则触发时生效）；斜杠命令：复制 [command/easy-git.md](../command/easy-git.md) 到 `~/.cursor/commands/easy-git.md`，输入 `/easy-git 描述` |
-| **Codex** | skill：复制到 `~/.codex/skills/easy-git/`；斜杠命令：复制 [codex/easy-git.md](../codex/easy-git.md) 到 `~/.codex/commands/easy-git.md`，输入 `/easy-git 描述` |
-| **Qoder / QoderCN** | skill：复制到 `~/.qoder/skills/easy-git/`（QoderCN 用 `~/.qoder-cn/skills/`）；斜杠命令：复制 [command/easy-git.md](../command/easy-git.md) 到 `~/.qoder/commands/easy-git.md`（QoderCN 用 `~/.qoder-cn/commands/`），输入 `/easy-git 描述` |
-| **Gemini CLI / OpenCode / Zed 等** | 把 `SKILL.md` 内容追加到仓库的 `AGENTS.md`（这些 agent 启动时自动读取） |
-| **其他任何 agent** | 直接把 `SKILL.md` 全文粘贴到它的系统提示 / 项目说明里即可——文件内容自包含，无外部依赖 |
+| **Claude Code** | skill → `~/.claude/skills/easy-git/`；斜杠命令 → `~/.claude/commands/easy-git.md`（模板 [codex/easy-git.md](../codex/easy-git.md)） |
+| **Codex** | skill → `~/.codex/skills/easy-git/`；斜杠命令 → `~/.codex/commands/easy-git.md`（模板 [codex/easy-git.md](../codex/easy-git.md)） |
+| **Cursor** | rules → `~/.cursor/rules/easy-git.mdc`；斜杠命令 → `~/.cursor/commands/easy-git.md`（模板 [command/easy-git.md](../command/easy-git.md)） |
+| **Qoder / QoderCN** | skill → `~/.qoder/skills/easy-git/`（QoderCN 用 `~/.qoder-cn/skills/`）；斜杠命令 → `~/.qoder/commands/easy-git.md`（QoderCN 用 `~/.qoder-cn/commands/`，模板 [command/easy-git.md](../command/easy-git.md)） |
+| **Gemini CLI / OpenCode / Zed 等** | 把 `SKILL.md` 内容追加到项目 `AGENTS.md` |
+| **其他任何 agent** | 把 `SKILL.md` 全文粘贴到系统提示 / 项目说明 |
 
-> 推荐直接用安装器：`easy-git install`（勾选即自动装好 skill + 斜杠命令），详见 [docs/use-skill.md](../docs/use-skill.md)。
+> 模板区别：`codex/easy-git.md` 带 frontmatter（Codex / Claude Code 支持）；`command/easy-git.md` 纯 Markdown（Cursor / Qoder / QoderCN 不接受 frontmatter）。安装器会自动选对。
 
 ## 通用说明
 
-- Skill 是**引导层**：它定义"把用户当新手、流程怎么走、安全规则"，实际命令由 agent 执行。
-- 环境里有 `easy-git` **CLI**（仓库 `bin/easy-git.mjs`，零依赖）时，Skill 会优先调用它；没有就用内置的 git 命令，效果一致。
-- 与 DSH 插件**共用同一套偏好**（平台存在 `git config --global easygit.platform`），同一台机器两个方案混用也不冲突。
+- Skill 是**引导层**：定义"把用户当新手、流程怎么走、安全规则"，实际命令由 agent 执行。
+- 环境里有 `easy-git` CLI 时 Skill 优先调用它；没有就用内置 git 命令，效果一致。
+- 与 DSH 插件共用同一套偏好（平台存于 `git config --global easygit.platform`），混用不冲突。
 
 ## 目录
 
 ```
 skills/
-├── easy-git/
-│   └── SKILL.md    ← 通用 Skill 本体（YAML frontmatter + 完整引导流程 + 安全规则 + 术语词典）
-└── easy-git-install/
-    └── SKILL.md    ← 安装 Skill（让 agent 自动安装插件）
+├── easy-git/SKILL.md            ← 通用 Skill 本体
+└── easy-git-install/SKILL.md    ← 安装 Skill（让 agent 自动安装）
 ```
-
-## 相关文档
-
-- [README](../README.md) —— 项目入口与导航（两种使用方式）
-- [docs/use-skill.md](../docs/use-skill.md) —— 方式二：通用 Skill（各 agent 安装）
-- [docs/install-dsh.md](../docs/install-dsh.md) —— 方式一：DSH 插件
-- [CHANGELOG](../CHANGELOG.md) —— 更新日志
-- [docs/development.md](../docs/development.md) —— 开发指南
