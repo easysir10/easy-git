@@ -2,7 +2,7 @@
 
 # 🧑‍💻 easy-git
 
-**Beginner-Friendly Git Assistant** — zero command line, plain-language guidance for everything Git
+**Beginner-Friendly Git Assistant** — one install command, pick your agents, done
 
 [![version](https://img.shields.io/badge/version-0.5.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
@@ -15,23 +15,40 @@
 
 ---
 
-**easy-git has exactly two ways to use it — pick one**:
+**easy-git makes Git beginner-friendly**: you don't need a single command-line command; it works with GitLab / GitHub / Gitee — any Git hosting platform.
+Installation is one command, and you pick which agents to install for (**including DSH**) from a menu.
 
-- 🟦 **Way 1: DSH plugin** — inside DeepSeek Harness (11 beginner-friendly tools)
-- 🧩 **Way 2: Universal Skill** — directly in Codex / Claude Code / Cursor / QoderCN and other agents
+## 🚀 Install (one command, done)
 
-**You don't need a single command-line command** — works with GitLab / GitHub / Gitee — any Git hosting platform.
+```bash
+npm install -g github:easysir10/easy-git
+```
 
-## 🧭 Which way?
+**The moment the install finishes, a menu pops up automatically** — check the agents you want, and it installs them:
 
-| Your situation | Way | Guide |
+```
+🧑‍💻 easy-git installed! Choose which agents to install for:
+  1. DSH plugin (DeepSeek Harness)
+  2. Codex (skill + /easy-git slash command)
+  3. Claude Code (skill)
+  4. Cursor (rules)
+  5. AGENTS.md for the current project (universal)
+Enter numbers (e.g. 1,3 or a): a    ← a = install everything
+```
+
+> [!NOTE]
+> - In non-interactive environments (CI etc.) the menu is skipped: run `easy-git install` later, or **the first time you run `easy-git` it will show the menu**.
+> - Re-pick anytime: `easy-git install`; install everything: `easy-git install all`.
+
+## Where & how to use it
+
+| You use | After install | Guide |
 | --- | --- | --- |
-| 🟦 Using **DSH** (DeepSeek Harness) | Way 1: DSH plugin | [install-dsh.md](docs/install-dsh.md) |
-| 🧩 Using **Codex / Claude Code / Cursor / QoderCN** or other agents | Way 2: Universal Skill | [use-skill.md](docs/use-skill.md) |
+| 🟦 **DSH** (DeepSeek Harness) | Tell the assistant "commit / pull / push / resolve conflicts / check my git status" | [install-dsh.md](docs/install-dsh.md) |
+| 🟠 **Codex** | Type `/easy-git description` (skill also activates) | [use-skill.md](docs/use-skill.md) |
+| 🟪 **Claude Code / Cursor / QoderCN** etc. | skill / rules activate automatically | [use-skill.md](docs/use-skill.md) |
 
-> [!TIP]
-> [!TIP]
-> `npm install -g github:easysir10/easy-git` **shows the "choose agents to install" menu right after the install finishes** — pick and it installs automatically; re-run `easy-git install` anytime, or `easy-git install all`.
+> Agents you didn't check are simply untouched — you can add them anytime.
 
 ## 🎯 Highlights
 
@@ -44,8 +61,8 @@
 
 | Doc | What it is |
 | --- | --- |
-| [install-dsh.md](docs/install-dsh.md) | 🟦 Way 1: DSH plugin install & usage |
-| [use-skill.md](docs/use-skill.md) | 🧩 Way 2: Universal Skill (per-agent install + command reference) |
+| [install-dsh.md](docs/install-dsh.md) | 🟦 DSH plugin: usage (11 tools) & update |
+| [use-skill.md](docs/use-skill.md) | 🧩 Other agents: Codex / Claude Code / Cursor / QoderCN |
 | [demo-en.md](docs/demo-en.md) / [demo-zh.md](docs/demo-zh.md) | 👀 Demo: the complete guided flow |
 | [development.md](docs/development.md) | 🛠️ Development: structure / conventions / testing / release |
 | [CHANGELOG.md](CHANGELOG.md) | 📋 Changelog (0.1 → 0.5) |
@@ -65,7 +82,7 @@
 <details>
 <summary>I can't use the command line. Is this for me?</summary>
 
-Absolutely. You only need to talk, choose, paste links, and click website buttons.
+Absolutely. Even installing is just one copy-paste command; after that you only need to talk, choose, paste links, and click website buttons.
 </details>
 
 <details>
@@ -75,9 +92,9 @@ Say "switch to GitHub" or "switch to GitLab" — done, instantly.
 </details>
 
 <details>
-<summary>How do I update the DSH plugin?</summary>
+<summary>How do I add / change agents after install?</summary>
 
-Say "update the plugin" and the assistant runs the update command; then restart dsh. See [install-dsh.md](docs/install-dsh.md).
+Run `easy-git install` and re-pick, or `easy-git install all`.
 </details>
 
 ## 📄 License

@@ -1,39 +1,18 @@
-# DSH 插件方式（DeepSeek Harness）
+# DSH 插件（DeepSeek Harness）
 
 > 在 DSH 里把 easy-git 作为**插件**使用：注册 11 个新手友好工具，对助手说"提交/拉取/推送/解决冲突/看下 git 现状"即可。
 
-## 安装（任选一种）
-
-### 方式 A：交互式安装器（推荐）
+## 安装（统一安装器里勾选 DSH 即可）
 
 ```bash
 npm install -g github:easysir10/easy-git
 ```
 
-安装完成后会自动弹出选择菜单（选 1 = DSH 插件，或输入 `a` 全部安装）；之后随时 `easy-git install` 重选。
+安装完成时自动弹出菜单，**选 1 = DSH 插件**（或输入 `a` 全部安装）。安装器自动完成：装 pnpm（如缺）→ `dsh plugin add` → 登记 `cordis.patch.yml`。
 
-### 方式 B：一句话让 agent 装
-
-把这句话发给你的 DSH 助手（或其他 agent）：
-
-> **"帮我安装 easy-git 插件：运行 https://github.com/easysir10/easy-git 仓库的安装脚本（Windows 用 install.ps1，macOS/Linux 用 install.sh），装完告诉我怎么重启。"**
-
-### 方式 C：手动安装（了解原理用）
-
-> [!IMPORTANT]
-> 先安装 pnpm（`dsh plugin` 的下载器）：`npm install -g pnpm`
-
-```bash
-# 1️⃣ 安装插件到 profile
-dsh plugin --profile web add github:easysir10/easy-git
-```
-
-```yaml
-# 2️⃣ 登记到启动清单：编辑 $DSH_HOME/profiles/web/cordis.patch.yml
-- insert:
-    - id: git-beginner-helper
-      name: '@easysir10/easy-git'
-```
+> 其他安装途径（了解用）：
+> - 让 agent 装：把"帮我安装 easy-git 插件，运行 https://github.com/easysir10/easy-git 的安装脚本（Windows 用 install.ps1，macOS/Linux 用 install.sh），装完告诉我怎么重启"发给它。
+> - 手动：装 pnpm → `dsh plugin --profile web add github:easysir10/easy-git` → 在 `$DSH_HOME/profiles/web/cordis.patch.yml` 登记插件行（`- insert: - id: git-beginner-helper ...`）。
 
 ## 生效与更新
 

@@ -2,7 +2,7 @@
 
 # 🧑‍💻 easy-git
 
-**新手友好的 Git 助手** —— 零命令行、全程大白话，带你完成所有 git 操作
+**新手友好的 Git 助手** —— 一条命令安装，选择要用的 agent，自动装好
 
 [![version](https://img.shields.io/badge/version-0.5.0-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
@@ -15,23 +15,40 @@
 
 ---
 
-**easy-git 只有两种使用方式，选一个就行**：
+**easy-git 让 git 对新手友好**：你不需要会任何命令行命令，兼容 GitLab / GitHub / Gitee 等一切 git 托管平台。
+安装只有一条命令，要装到哪些 agent（**包含 DSH**）由你在菜单里勾选。
 
-- 🟦 **方式一：DSH 插件** —— 在 DeepSeek Harness 里用（11 个新手友好工具）
-- 🧩 **方式二：通用 Skill** —— 在 Codex / Claude Code / Cursor / QoderCN 等其他 agent 里直接用
+## 🚀 安装（一条命令，一步到位）
 
-**你不需要会任何命令行命令** —— 兼容 GitLab / GitHub / Gitee 等一切 git 托管平台。
+```bash
+npm install -g github:easysir10/easy-git
+```
 
-## 🧭 选哪种方式？
+**安装完成的瞬间会自动弹出菜单**，勾选要用的 agent，选完自动装好：
 
-| 你的场景 | 方式 | 入口 |
+```
+🧑‍💻 easy-git 安装完成！现在选择要安装到哪些 agent：
+  1. DSH 插件（DeepSeek Harness）
+  2. Codex（skill + /easy-git 斜杠命令）
+  3. Claude Code（skill）
+  4. Cursor（rules）
+  5. 当前项目 AGENTS.md（通用）
+输入序号（如 1,3 或 a）：a    ← 输入 a 全部安装
+```
+
+> [!NOTE]
+> - 非交互环境（CI 等）自动跳过菜单：稍后运行 `easy-git install` 重选，或**首次运行 `easy-git` 也会弹**。
+> - 随时重选：`easy-git install`；全装：`easy-git install all`。
+
+## 装完在哪里怎么用
+
+| 你在哪用 | 装完怎么用 | 详情 |
 | --- | --- | --- |
-| 🟦 用 **DSH**（DeepSeek Harness） | 方式一：DSH 插件 | [install-dsh.md](docs/install-dsh.md) |
-| 🧩 用 **Codex / Claude Code / Cursor / QoderCN** 等其他 agent | 方式二：通用 Skill | [use-skill.md](docs/use-skill.md) |
+| 🟦 **DSH**（DeepSeek Harness） | 对助手说"提交 / 拉取 / 推送 / 解决冲突 / 看下 git 现状" | [install-dsh.md](docs/install-dsh.md) |
+| 🟠 **Codex** | 输入 `/easy-git 描述`（skill 也会自动生效） | [use-skill.md](docs/use-skill.md) |
+| 🟪 **Claude Code / Cursor / QoderCN** 等 | skill / rules 自动生效 | [use-skill.md](docs/use-skill.md) |
 
-> [!TIP]
-> [!TIP]
-> `npm install -g github:easysir10/easy-git` **安装完成后会直接弹出"选择要安装的 agent"菜单**，选完自动装好；之后随时 `easy-git install` 重选，或 `easy-git install all` 全装。
+> 都装上了也不用管：菜单里没勾的 agent 不受影响，随时可以补装。
 
 ## 🎯 核心亮点
 
@@ -44,8 +61,8 @@
 
 | 文档 | 说明 |
 | --- | --- |
-| [install-dsh.md](docs/install-dsh.md) | 🟦 方式一：DSH 插件安装与使用 |
-| [use-skill.md](docs/use-skill.md) | 🧩 方式二：通用 Skill（各 agent 安装 + 命令速查） |
+| [install-dsh.md](docs/install-dsh.md) | 🟦 DSH 插件：用法（11 个工具）与更新 |
+| [use-skill.md](docs/use-skill.md) | 🧩 其他 agent：Codex / Claude Code / Cursor / QoderCN |
 | [demo-zh.md](docs/demo-zh.md) / [demo-en.md](docs/demo-en.md) | 👀 演示：小白全流程对话剧本 |
 | [development.md](docs/development.md) | 🛠️ 开发指南：结构 / 约定 / 测试 / 发布 |
 | [CHANGELOG.md](CHANGELOG.md) | 📋 更新日志（0.1 → 0.5） |
@@ -65,7 +82,7 @@
 <details>
 <summary>我不会命令行，能用吗？</summary>
 
-完全能。你只需要：说话、做选择、贴链接、点网页按钮。
+完全能。安装也只要一条命令（复制粘贴即可），之后你只需要：说话、做选择、贴链接、点网页按钮。
 </details>
 
 <details>
@@ -75,9 +92,9 @@
 </details>
 
 <details>
-<summary>DSH 插件怎么更新？</summary>
+<summary>装完想换/补装 agent 怎么办？</summary>
 
-说“更新插件”，助手执行更新命令；然后重启 dsh 生效。详见 [install-dsh.md](docs/install-dsh.md)。
+运行 `easy-git install` 重新勾选，或 `easy-git install all` 全部安装。
 </details>
 
 ## 📄 License
