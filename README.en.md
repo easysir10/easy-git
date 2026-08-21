@@ -24,16 +24,18 @@ Installation is one command, and you pick which agents to install for (**includi
 npm install -g github:easysir10/easy-git
 ```
 
-**The moment the install finishes, a menu pops up automatically** — check the agents you want, and it installs them:
+**The moment the install finishes, a selection menu pops up automatically** (↑↓ move · Space toggle · Enter confirm) — pick and it installs:
 
 ```
-🧑‍💻 easy-git installed! Choose which agents to install for:
-  1. DSH plugin (DeepSeek Harness)
-  2. Codex (skill + /easy-git slash command)
-  3. Claude Code (skill)
-  4. Cursor (rules)
-  5. AGENTS.md for the current project (universal)
-Enter numbers (e.g. 1,3 or a): a    ← a = install everything
+🎯 Choose which agents to install for (↑↓ move · Space toggle · Enter confirm · a all · q cancel)
+  ➜ ☐ 1. DSH plugin (DeepSeek Harness)
+    ☐ 2. Codex (skill + /easy-git slash command)
+    ☐ 3. Claude Code (skill)
+    ☑ 4. Cursor (rules)                ← Space to check
+    ☐ 5. Windsurf (rules)
+    ☐ 6. Cline (rules)
+    ☑ 7. Universal AGENTS.md (Gemini CLI / OpenCode / Zed / Qoder / Trae etc.)
+(Enter to confirm and install; number keys also toggle)
 ```
 
 > [!NOTE]

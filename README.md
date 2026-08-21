@@ -24,16 +24,18 @@
 npm install -g github:easysir10/easy-git
 ```
 
-**安装完成的瞬间会自动弹出菜单**，勾选要用的 agent，选完自动装好：
+**安装完成的瞬间会自动弹出选择菜单**（↑↓ 移动 · 空格 勾选 · 回车 确认），选完自动装好：
 
 ```
-🧑‍💻 easy-git 安装完成！现在选择要安装到哪些 agent：
-  1. DSH 插件（DeepSeek Harness）
-  2. Codex（skill + /easy-git 斜杠命令）
-  3. Claude Code（skill）
-  4. Cursor（rules）
-  5. 当前项目 AGENTS.md（通用）
-输入序号（如 1,3 或 a）：a    ← 输入 a 全部安装
+🎯 选择要安装的 agent（↑↓ 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消）
+  ➜ ☐ 1. DSH 插件（DeepSeek Harness）
+    ☐ 2. Codex（skill + /easy-git 斜杠命令）
+    ☐ 3. Claude Code（skill）
+    ☑ 4. Cursor（rules）              ← 空格勾选
+    ☐ 5. Windsurf（rules）
+    ☐ 6. Cline（rules）
+    ☑ 7. 通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Qoder / Trae 等）
+（回车确认，自动安装；也可按数字切换勾选）
 ```
 
 > [!NOTE]

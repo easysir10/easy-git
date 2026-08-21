@@ -427,12 +427,56 @@ async function cmdBranch(dir, args) {
 
 // ---------- 安装器：选择要装的 agent ----------
 const INSTALL_TARGETS = [
-  { key: 'dsh', label: 'DSH 插件（web profile，工具方式）' },
-  { key: 'codex', label: 'Codex（斜杠命令 /easy-git + 描述）' },
+  { key: 'dsh', label: 'DSH 插件（DeepSeek Harness）' },
+  { key: 'codex', label: 'Codex（skill + /easy-git 斜杠命令）' },
   { key: 'claude', label: 'Claude Code（skill）' },
   { key: 'cursor', label: 'Cursor（rules）' },
-  { key: 'agents', label: '当前项目 AGENTS.md（通用，Codex/Cursor/其他都读）' },
+  { key: 'windsurf', label: 'Windsurf（rules）' },
+  { key: 'cline', label: 'Cline（rules）' },
+  { key: 'agents', label: '通用 AGENTS.md（Gemini CLI / OpenCode / Zed / Qoder / Trae 等）' },
 ]
+
+// 复选框多选菜单：↑↓/jk 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消 · 数字直接切换
+function checkboxMenu(items) {
+  return new Promise((resolve) => {
+    if (!process.stdin.isTTY) { resolve([]); return }
+    const selected = new Set()
+    let cursor = 0
+    readline.emitKeypressEvents(process.stdin)
+    process.stdin.setRawMode(true)
+    const finish = (cancel) => {
+      process.stdin.setRawMode(false)
+      process.stdin.pause()
+      if (cancel) { resolve([]) } else { resolve([...selected]) }
+    }
+    const draw = () => {
+      console.clear()
+      console.log('')
+      console.log('🎯 选择要安装的 agent（↑↓ 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消）')
+      console.log('')
+      items.forEach((it, i) => {
+        const mark = selected.has(it.key) ? '☑' : '☐'
+        console.log('  ' + (i === cursor ? '➜' : ' ') + ' ' + mark + ' ' + (i + 1) + '. ' + it.label)
+      })
+      console.log('')
+    }
+    draw()
+    process.stdin.on('keypress', (str, key) => {
+      if (!key) return
+      if (key.name === 'up' || key.name === 'k') { cursor = (cursor - 1 + items.length) % items.length; draw(); return }
+      if (key.name === 'down' || key.name === 'j') { cursor = (cursor + 1) % items.length; draw(); return }
+      if (key.name === 'space') { const k = items[cursor].key; selected.has(k) ? selected.delete(k) : selected.add(k); draw(); return }
+      if (key.name === 'return' || key.name === 'enter') { finish(false); return }
+      const s = (str || '').toLowerCase()
+      if (s === 'a') { items.forEach((i) => selected.add(i.key)); draw(); return }
+      if (key.name === 'escape' || key.name === 'q' || s === 'q') { finish(true); return }
+      if (s && /^[1-9]$/.test(s)) {
+        const idx = parseInt(s, 10) - 1
+        if (items[idx]) { const k = items[idx].key; selected.has(k) ? selected.delete(k) : selected.add(k); draw() }
+      }
+    })
+  })
+}
 
 function runShell(cmd) {
   return spawnSync(cmd, { shell: true, stdio: 'inherit' })
@@ -480,6 +524,18 @@ async function installTarget(key) {
       copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.mdc'))
       return '✅ Cursor：已安装（rules 自动生效）'
     }
+    if (key === 'windsurf') {
+      const dest = resolve(homedir(), '.windsurf', 'rules')
+      mkdirSync(dest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.md'))
+      return '✅ Windsurf：已安装（rules 自动生效）'
+    }
+    if (key === 'cline') {
+      const dest = resolve(homedir(), '.clinerules')
+      mkdirSync(dest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.md'))
+      return '✅ Cline：已安装（rules 自动生效）'
+    }
     if (key === 'agents') {
       const dest = resolve(process.cwd(), 'AGENTS.md')
       const block = '\n## easy-git（新手友好的 git 助手）\n\n用户提到 git / 提交 / 拉取 / 推送 / 冲突 / 仓库 / 撤销 / 分支 / 历史时：\n- 优先使用 easy-git 命令（easy-git status / commit / push / pull / conflict / log / undo / branch / setup / platform / start），没有则用 git 命令按通用 Skill（skills/easy-git/SKILL.md）引导；\n- 把用户当第一次接触 git 的新手：全程中文大白话，由你执行所有命令，绝不让用户输入命令行命令或填路径；危险操作先说明后果再执行。\n'
@@ -504,9 +560,12 @@ async function cmdInstall(argv) {
   if (args.length) {
     picks = args.join(',').split(/[,，\s]+/).map((s) => s.trim()).filter(Boolean)
     if (picks.includes('all')) picks = INSTALL_TARGETS.map((t) => t.key)
+  } else if (process.stdin.isTTY) {
+    picks = await checkboxMenu(INSTALL_TARGETS)
+    console.log('')
   } else {
     console.log('🎯 要把 easy-git 安装到哪些 agent？（可多选，用逗号分隔；输入 a 安装全部）')
-    INSTALL_TARGETS.forEach((t, i) => console.log(`  ${i + 1}. ${t.label}`))
+    INSTALL_TARGETS.forEach((t, i) => console.log('  ' + (i + 1) + '. ' + t.label))
     const ans = (await ask('输入序号（如 1,3 或 a）：')).toLowerCase()
     if (ans === 'a' || ans === 'all') picks = INSTALL_TARGETS.map((t) => t.key)
     else picks = ans.split(/[,，\s]+/).map((s) => INSTALL_TARGETS[parseInt(s, 10) - 1] && INSTALL_TARGETS[parseInt(s, 10) - 1].key).filter(Boolean)

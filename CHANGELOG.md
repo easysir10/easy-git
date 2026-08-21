@@ -4,7 +4,7 @@
 
 ## 0.5.0（2026-08-21）
 
-- 🆕 新增**交互式安装器**：`easy-git install` 菜单选择要装的 agent（DSH 插件 / Codex / Claude Code / Cursor / AGENTS.md），支持多选与 `all` 一键全装
+- 🆕 新增**交互式安装器**：`easy-git install` 复选框菜单（↑↓ 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消），支持 7 个目标：DSH 插件 / Codex / Claude Code / Cursor / Windsurf / Cline / 通用 AGENTS.md（Gemini CLI、OpenCode、Zed、Qoder、Trae 等）
 - 🆕 安装体验：**`npm install -g` 完成时直接弹出"选择 agent"菜单**（postinstall 脚本；非交互环境自动跳过，稍后 `easy-git install` 或首次运行再选）；prepare 脚本打印引导提示
 - 🆕 Codex 斜杠命令：`/easy-git + 描述`（命令模板 `codex/easy-git.md`，安装器自动放入 `~/.codex/commands/`）
 - 🆕 仓库自带 `AGENTS.md`：任何 agent 进仓库即获得新手 git 引导
