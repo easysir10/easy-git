@@ -26,7 +26,7 @@ agent 会按 easy-git 的规则为你完成对应的 git 操作——和 DSH 里
 npx -y github:easysir10/easy-git
 ```
 
-**首次运行自动弹出"选择要安装的 agent"菜单**——勾选 Codex / Claude Code / Cursor / Qoder / QoderCN 等（或输入 `a` 全装），自动装好 skill + 斜杠命令；之后随时 `easy-git install` 重选。
+**运行即弹出"选择要安装的 agent"菜单**——勾选 Codex / Claude Code / Cursor / Qoder / QoderCN 等（或输入 `a` 全装），自动装好 skill + 斜杠命令；以后想重选，再运行一次即可。
 
 > **让 agent 自己装**：把仓库地址 `https://github.com/easysir10/easy-git` 告诉任意 agent，让它执行上面的命令即可；
 > 或克隆仓库后运行 `node bin/easy-git.mjs install`。

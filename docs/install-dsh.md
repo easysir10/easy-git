@@ -8,7 +8,7 @@
 npx -y github:easysir10/easy-git
 ```
 
-> 首次运行自动弹出菜单，**选 1 = DSH 插件**（或输入 `a` 全部安装）。安装器自动完成：装 pnpm（如缺）→ `dsh plugin add` → 登记 `cordis.patch.yml`。
+> 运行即弹出菜单，**选 1 = DSH 插件**（或输入 `a` 全部安装）；以后想重选，再运行一次即可。安装器自动完成：装 pnpm（如缺）→ `dsh plugin add` → 登记 `cordis.patch.yml`。
 >
 > 让 agent 装：把仓库地址 `https://github.com/easysir10/easy-git` 告诉任意 agent，让它执行上面的命令即可。
 >

@@ -11,7 +11,7 @@
 
 由你（agent）执行以下任一种，别让用户输命令：
 
-1. **npx（推荐）**：运行 `npx -y github:easysir10/easy-git` —— 首次运行自动弹出"选择 agent"菜单（↑↓ 移动 · 空格 勾选 · 回车 确认），勾选你所在的 agent（或输入 a 全装），自动装好 skill / 斜杠命令 / rules；
+1. **npx（推荐）**：运行 `npx -y github:easysir10/easy-git` —— 运行即弹出"选择 agent"菜单（↑↓ 移动 · 空格 勾选 · 回车 确认），勾选你所在的 agent（或输入 a 全装），自动装好 skill / 斜杠命令 / rules；
 2. **克隆后自装**：`git clone https://github.com/easysir10/easy-git <临时目录> && node <临时目录>/bin/easy-git.mjs install`；
 3. **只装 DSH 插件**：Windows 运行仓库 `install.ps1`，macOS/Linux 运行 `install.sh`（详见 skills/easy-git-install/SKILL.md）。
 

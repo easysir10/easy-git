@@ -2,6 +2,10 @@
 
 本项目版本演进记录。版本号语义：`0.x.0` 加功能，`0.x.y` 修问题/完善细节。
 
+## 0.6.2（2026-08-21）
+
+- 🔴 修复：**npx 无参数运行不再只看帮助**——之前已装过的机器上 `npx -y github:easysir10/easy-git` 因安装标记存在而只显示帮助文本、不弹菜单；现在检测 npx 环境（包在 `_npx` 缓存目录），**npx 方式每次运行都弹"选 agent"菜单**（可随时重跑重选），全局安装方式保持"首次弹菜单、之后显示帮助"
+
 ## 0.6.1（2026-08-21）
 
 - 🆕 **npx 安装方式**：`npx -y github:easysir10/easy-git` 一条命令，无需全局安装，首次运行自动弹"选 agent"菜单（网络慢可用 `npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`）

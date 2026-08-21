@@ -4,7 +4,7 @@
 
 **Beginner-Friendly Git Assistant** — one install command, pick your agents, done
 
-[![version](https://img.shields.io/badge/version-0.6.1-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.2-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-lightgrey)]()
@@ -27,7 +27,7 @@ npx -y github:easysir10/easy-git
 > ① Nothing to pre-install — npx downloads and runs easy-git on the fly (to keep it as a permanent command, also run `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`).
 > ② On slow networks use the tarball URL instead: `npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`.
 
-**The first run pops up a selection menu automatically** (↑↓ move · Space toggle · Enter confirm) — pick and it installs:
+**Running it pops up a selection menu** (↑↓ move · Space toggle · Enter confirm) — pick and it installs; re-run anytime to re-pick:
 
 ```
 🎯 Choose which agents to install for (↑↓ move · Space toggle · Enter confirm · a all · q cancel)

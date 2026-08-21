@@ -4,7 +4,7 @@
 
 **新手友好的 Git 助手** —— 一条命令安装，选择要用的 agent，自动装好
 
-[![version](https://img.shields.io/badge/version-0.6.1-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.2-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-%E4%B8%AD%E6%96%87%20%7C%20English-lightgrey)]()
@@ -27,7 +27,7 @@ npx -y github:easysir10/easy-git
 > ① 不用预先装任何东西，npx 自动下载并运行 easy-git（想常驻为命令可再执行 `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`）。
 > ② 网络较慢时用 tarball 直链代替：`npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`。
 
-**首次运行自动弹出选择菜单**（↑↓ 移动 · 空格 勾选 · 回车 确认），选完自动装好：
+**运行即弹出选择菜单**（↑↓ 移动 · 空格 勾选 · 回车 确认），选完自动装好；以后想重选，再运行一次即可：
 
 ```
 🎯 选择要安装的 agent（↑↓ 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消）

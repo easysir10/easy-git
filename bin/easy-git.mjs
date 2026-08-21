@@ -34,10 +34,15 @@ import {
 // 包根目录（用于定位 skills/、codex/ 等资源；全局安装与仓库内运行都适用）
 const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
+// 是否通过 npx 临时运行（包在 npm 缓存 _npx 目录下）：
+// npx 每次运行都当作"安装/重选 agent"入口，无参数也弹菜单；
+// 全局安装（npm install -g）则只在首次运行时弹菜单。
+const IS_NPX = fileURLToPath(import.meta.url).includes('_npx')
+
 // 首次运行标记：装完 CLI 后第一次执行 easy-git 自动弹出"选择 agent"菜单
 const SETUP_MARKER = resolve(homedir(), '.easy-git-setup')
 
-const VERSION = '0.6.1'
+const VERSION = '0.6.2'
 
 // ---------- 参数解析 ----------
 function parse(argv) {
@@ -75,7 +80,7 @@ function usage() {
 零依赖、跨平台，任何 agent 都能调用，人类也能在终端直接用。
 
 安装方式（任选其一）：
-  npx -y github:easysir10/easy-git              npx 一条命令，首次运行自动弹菜单选 agent
+  npx -y github:easysir10/easy-git              npx 一条命令，运行即弹菜单选 agent（可随时重跑重选）
   npm install -g github:easysir10/easy-git      全局安装（Windows 偶发符号链接问题，可用 tarball 直链）
   git clone https://github.com/easysir10/easy-git && node bin/easy-git.mjs install   让 agent 自装
 
@@ -602,7 +607,7 @@ async function firstRun() {
   console.log('👋 欢迎使用 easy-git！')
   console.log('')
   if (process.stdin.isTTY) {
-    console.log('第一次使用，先选择要安装到哪些 agent：')
+    console.log(IS_NPX ? '选择要安装到哪些 agent（以后想重选，再运行一次本命令即可）：' : '第一次使用，先选择要安装到哪些 agent：')
     await cmdInstall([])
   } else {
     console.log('（当前不是交互终端，跳过安装菜单。需要时运行 easy-git install 选择要装的 agent。）')
@@ -613,7 +618,9 @@ async function firstRun() {
 async function main() {
   const argv = process.argv.slice(2)
   if (!argv.length) {
-    if (!existsSync(SETUP_MARKER)) await firstRun()
+    // npx 方式：每次无参数运行都进安装向导（弹菜单选 agent）
+    // 全局安装：首次运行弹菜单，之后显示帮助
+    if (IS_NPX || !existsSync(SETUP_MARKER)) await firstRun()
     else usage()
     return
   }
