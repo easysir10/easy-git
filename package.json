@@ -1,6 +1,6 @@
 {
   "name": "@easysir10/easy-git",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "新手友好的 git 助手 DSH 插件：体检、首次配置、克隆/拉取、解决冲突、提交、推送，兼容 GitLab/GitHub/Gitee 等一切 git 工具。",
   "type": "module",
   "main": "lib/index.js",

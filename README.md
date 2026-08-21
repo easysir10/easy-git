@@ -19,6 +19,10 @@
 | `git_beginner_conflict` | 冲突向导：列冲突文件 → 选择（保留我的 / 保留对方的 / 手动改）→ 自动解决、展示内容或标记手动改完 |
 | `git_beginner_commit` | 先预览将提交的文件清单，请用户用一句话说明改动，再执行 `git add -A` + `git commit` |
 | `git_beginner_push` | 上传到远程；首次自动 `-u origin HEAD`；被拒绝提示先拉取；认证失败给通俗说明 |
+| `git_beginner_log` | 大白话查看提交历史（时间、作者、说明），想看某次详细改动也能打开 |
+| `git_beginner_undo` | 撤销上一次提交但保留代码改动，带确认（后悔药） |
+| `git_beginner_branch` | 分支管理：查看 / 新建 / 切换 / 合并（分支 = 代码的平行线） |
+| `git_beginner_start` | “开始使用 git”引导：检查进度（平台 → 身份 → 仓库）并提示下一步 |
 
 ## 首次使用流程（新手友好）
 
@@ -59,7 +63,7 @@ npm install    # 或 pnpm install（解析 peerDependencies）
 ```
 
 `lib/index.js` 是插件本体：ESM 模块，导出 `{ name, inject, apply }` 标准 Cordis 插件，
-通过 `ctx.tools.register(defineTool(...))` 注册七个工具。
+通过 `ctx.tools.register(defineTool(...))` 注册十一个工具。
 
 ## 实现要点
 

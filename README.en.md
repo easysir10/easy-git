@@ -23,6 +23,10 @@ Works with GitLab / GitHub and any Git hosting platform (Gitee, etc.).
 | `git_beginner_conflict` | Conflict wizard: list conflicted files → choose (keep mine / keep theirs / manual) → auto-resolve, show content, or mark manually-resolved files |
 | `git_beginner_commit` | Previews the file list first, asks you for a one-sentence summary, then runs `git add -A` + `git commit` |
 | `git_beginner_push` | Uploads to remote; first push auto-sets the upstream (`-u origin HEAD`); rejected → suggests pulling first; auth failure → plain-language explanation |
+| `git_beginner_log` | Read your commit history in plain language (time, author, message) |
+| `git_beginner_undo` | Undo the last commit while keeping your code changes, with confirmation |
+| `git_beginner_branch` | Branch management: list / create / switch / merge (a branch = a parallel line of code) |
+| `git_beginner_start` | "Get started with Git" onboarding: checks progress (platform → identity → repo) and tells you the next step |
 
 ## First-use flow (beginner friendly)
 
@@ -63,7 +67,7 @@ npm install    # or pnpm install (resolves peerDependencies)
 ```
 
 `lib/index.js` is the plugin itself: an ESM module exporting the standard Cordis plugin `{ name, inject, apply }`,
-registering the seven tools via `ctx.tools.register(defineTool(...))`.
+registering the eleven tools via `ctx.tools.register(defineTool(...))`.
 
 ## Implementation highlights
 
