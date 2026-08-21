@@ -139,6 +139,7 @@ Framework-agnostic beginner Git guidance, usable by any agent that can run comma
 | [docs/demo-en.md](docs/demo-en.md) | English demo: the complete guided flow |
 | [docs/demo-zh.md](docs/demo-zh.md) | 中文演示：小白全流程对话剧本 |
 | [docs/development.md](docs/development.md) | Development guide: structure / conventions / testing / release |
+| [docs/codex-usage.md](docs/codex-usage.md) | Codex slash-command usage guide (/easy-git + description) |
 | [CHANGELOG.md](CHANGELOG.md) | Changelog (0.1 → 0.4) |
 | [skills/README.md](skills/README.md) | Universal Skill install guide |
 

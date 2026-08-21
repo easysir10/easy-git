@@ -139,6 +139,7 @@ easy-git status
 | [docs/demo-zh.md](docs/demo-zh.md) | 中文演示：小白全流程对话剧本 |
 | [docs/demo-en.md](docs/demo-en.md) | English demo：完整的引导流程 |
 | [docs/development.md](docs/development.md) | 开发指南：结构 / 约定 / 测试 / 发布 |
+| [docs/codex-usage.md](docs/codex-usage.md) | Codex 斜杠命令使用指南（/easy-git + 描述） |
 | [CHANGELOG.md](CHANGELOG.md) | 更新日志（0.1 → 0.4） |
 | [skills/README.md](skills/README.md) | 通用 Skill 安装说明 |
 
