@@ -20,13 +20,16 @@
 安装后会生成一条命令：在对话框输入 `/easy-git 描述`（例如 `/easy-git 帮我提交并推送`），
 agent 会按 easy-git 的规则为你完成对应的 git 操作——和 DSH 里"直接说"体验一致。
 
-## 一键安装（推荐）
+## 一键安装（推荐：npx）
 
 ```bash
-npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
+npx -y github:easysir10/easy-git
 ```
 
-**安装完成的那一刻，会自动弹出"选择要安装的 agent"菜单**——勾选 Codex / Claude Code / Cursor / Qoder / QoderCN 等（或输入 `a` 全装），自动装好 skill + 斜杠命令；之后随时 `easy-git install` 重选。
+**首次运行自动弹出"选择要安装的 agent"菜单**——勾选 Codex / Claude Code / Cursor / Qoder / QoderCN 等（或输入 `a` 全装），自动装好 skill + 斜杠命令；之后随时 `easy-git install` 重选。
+
+> **让 agent 自己装**：把仓库地址 `https://github.com/easysir10/easy-git` 告诉任意 agent，让它执行上面的命令即可；
+> 或克隆仓库后运行 `node bin/easy-git.mjs install`。
 
 ## 装到常见 agent（手动方式，了解用）
 

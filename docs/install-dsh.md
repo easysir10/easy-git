@@ -5,16 +5,14 @@
 ## 安装（统一安装器里勾选 DSH 即可）
 
 ```bash
-npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
+npx -y github:easysir10/easy-git
 ```
 
-> 也可写短：`npm install -g github:easysir10/easy-git`（个别 Windows 环境下 npm 对 github 源会走符号链接导致安装失败，遇到就用上面的 tarball 直链）。
-
-安装完成时自动弹出菜单，**选 1 = DSH 插件**（或输入 `a` 全部安装）。安装器自动完成：装 pnpm（如缺）→ `dsh plugin add` → 登记 `cordis.patch.yml`。
-
-> 其他安装途径（了解用）：
-> - 让 agent 装：把"帮我安装 easy-git 插件，运行 https://github.com/easysir10/easy-git 的安装脚本（Windows 用 install.ps1，macOS/Linux 用 install.sh），装完告诉我怎么重启"发给它。
-> - 手动：装 pnpm → `dsh plugin --profile web add github:easysir10/easy-git` → 在 `$DSH_HOME/profiles/web/cordis.patch.yml` 登记插件行（`- insert: - id: git-beginner-helper ...`）。
+> 首次运行自动弹出菜单，**选 1 = DSH 插件**（或输入 `a` 全部安装）。安装器自动完成：装 pnpm（如缺）→ `dsh plugin add` → 登记 `cordis.patch.yml`。
+>
+> 让 agent 装：把仓库地址 `https://github.com/easysir10/easy-git` 告诉任意 agent，让它执行上面的命令即可。
+>
+> 想常驻为命令：`npm install -g github:easysir10/easy-git`（Windows 偶发符号链接问题，改用 `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`）。
 
 ## 生效与更新
 

@@ -37,7 +37,7 @@ const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 // 首次运行标记：装完 CLI 后第一次执行 easy-git 自动弹出"选择 agent"菜单
 const SETUP_MARKER = resolve(homedir(), '.easy-git-setup')
 
-const VERSION = '0.6.0'
+const VERSION = '0.6.1'
 
 // ---------- 参数解析 ----------
 function parse(argv) {
@@ -73,6 +73,11 @@ function out(text, code = 0) {
 function usage() {
   console.log(`easy-git v${VERSION} —— 新手友好的 git 助手（命令行版）
 零依赖、跨平台，任何 agent 都能调用，人类也能在终端直接用。
+
+安装方式（任选其一）：
+  npx -y github:easysir10/easy-git              npx 一条命令，首次运行自动弹菜单选 agent
+  npm install -g github:easysir10/easy-git      全局安装（Windows 偶发符号链接问题，可用 tarball 直链）
+  git clone https://github.com/easysir10/easy-git && node bin/easy-git.mjs install   让 agent 自装
 
 用法：
   easy-git status [目录]                            体检

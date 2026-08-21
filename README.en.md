@@ -4,7 +4,7 @@
 
 **Beginner-Friendly Git Assistant** — one install command, pick your agents, done
 
-[![version](https://img.shields.io/badge/version-0.6.0-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.1-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-lightgrey)]()
@@ -18,15 +18,16 @@
 **easy-git makes Git beginner-friendly**: you don't need a single command-line command; it works with GitLab / GitHub / Gitee — any Git hosting platform.
 Installation is one command, and you pick which agents to install for (**including DSH**) from a menu.
 
-## 🚀 Install (one command, done)
+## 🚀 Install (npx, one command)
 
 ```bash
-npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
+npx -y github:easysir10/easy-git
 ```
 
-> Shorter form: `npm install -g github:easysir10/easy-git` (same effect; on some Windows setups npm installs github sources via a symlink that can break the install — if that happens, use the tarball URL above).
+> ① Nothing to pre-install — npx downloads and runs easy-git on the fly (to keep it as a permanent command, also run `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`).
+> ② On slow networks use the tarball URL instead: `npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`.
 
-**The moment the install finishes, a selection menu pops up automatically** (↑↓ move · Space toggle · Enter confirm) — pick and it installs:
+**The first run pops up a selection menu automatically** (↑↓ move · Space toggle · Enter confirm) — pick and it installs:
 
 ```
 🎯 Choose which agents to install for (↑↓ move · Space toggle · Enter confirm · a all · q cancel)
@@ -41,6 +42,7 @@ npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/
 ```
 
 > [!NOTE]
+> - **Let an agent install it**: give any agent (Claude Code / Cursor / Codex / Qoder / Gemini CLI etc.) the repo URL `https://github.com/easysir10/easy-git` and ask it to run the install command above; or clone the repo and run `node bin/easy-git.mjs install`.
 > - In non-interactive environments (CI etc.) the menu is skipped: run `easy-git install` later, or **the first time you run `easy-git` it will show the menu**.
 > - Re-pick anytime: `easy-git install`; install everything: `easy-git install all`.
 

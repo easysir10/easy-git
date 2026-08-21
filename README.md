@@ -4,7 +4,7 @@
 
 **新手友好的 Git 助手** —— 一条命令安装，选择要用的 agent，自动装好
 
-[![version](https://img.shields.io/badge/version-0.6.0-blue)]()
+[![version](https://img.shields.io/badge/version-0.6.1-blue)]()
 [![license](https://img.shields.io/badge/license-MIT-green)]()
 [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 [![docs](https://img.shields.io/badge/docs-%E4%B8%AD%E6%96%87%20%7C%20English-lightgrey)]()
@@ -18,15 +18,16 @@
 **easy-git 让 git 对新手友好**：你不需要会任何命令行命令，兼容 GitLab / GitHub / Gitee 等一切 git 托管平台。
 安装只有一条命令，要装到哪些 agent（**包含 DSH**）由你在菜单里勾选。
 
-## 🚀 安装（一条命令，一步到位）
+## 🚀 安装（npx 一条命令，一步到位）
 
 ```bash
-npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
+npx -y github:easysir10/easy-git
 ```
 
-> 也可以写短一点：`npm install -g github:easysir10/easy-git`（效果相同；个别 Windows 环境下 npm 对 github 源会走符号链接导致安装失败，遇到就用上面的 tarball 直链）。
+> ① 不用预先装任何东西，npx 自动下载并运行 easy-git（想常驻为命令可再执行 `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`）。
+> ② 网络较慢时用 tarball 直链代替：`npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`。
 
-**安装完成的瞬间会自动弹出选择菜单**（↑↓ 移动 · 空格 勾选 · 回车 确认），选完自动装好：
+**首次运行自动弹出选择菜单**（↑↓ 移动 · 空格 勾选 · 回车 确认），选完自动装好：
 
 ```
 🎯 选择要安装的 agent（↑↓ 移动 · 空格 勾选 · 回车 确认 · a 全选 · q 取消）
@@ -41,6 +42,7 @@ npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/
 ```
 
 > [!NOTE]
+> - **agent 自己安装**：把仓库地址 `https://github.com/easysir10/easy-git` 告诉任何 agent（Claude Code / Cursor / Codex / Qoder / Gemini CLI 等），让它执行上面的安装命令即可；或让它克隆仓库后运行 `node bin/easy-git.mjs install`。
 > - 非交互环境（CI 等）自动跳过菜单：稍后运行 `easy-git install` 重选，或**首次运行 `easy-git` 也会弹**。
 > - 随时重选：`easy-git install`；全装：`easy-git install all`。
 

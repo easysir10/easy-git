@@ -2,6 +2,12 @@
 
 本项目版本演进记录。版本号语义：`0.x.0` 加功能，`0.x.y` 修问题/完善细节。
 
+## 0.6.1（2026-08-21）
+
+- 🆕 **npx 安装方式**：`npx -y github:easysir10/easy-git` 一条命令，无需全局安装，首次运行自动弹"选 agent"菜单（网络慢可用 `npx -y https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`）
+- 🆕 **agent 自装**：仓库地址 `https://github.com/easysir10/easy-git` 可直接交给任何 agent（Claude Code / Cursor / Codex / Qoder / Gemini CLI 等）自行安装；`AGENTS.md`、`skills/easy-git-install/SKILL.md`、README 与 docs 全部补充"agent 自装"指引
+- ✏️ CLI 帮助（`easy-git help`）补充三种安装方式说明
+
 ## 0.6.0（2026-08-21）
 
 - 🆕 **所有 agent 支持 `/easy-git 描述` 斜杠命令**（与 Codex 一致）：Claude Code（`~/.claude/commands/`）、Cursor（`~/.cursor/commands/`）、Qoder（`~/.qoder/commands/`）、QoderCN（`~/.qoder-cn/commands/`），安装器勾选即自动装好
