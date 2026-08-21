@@ -11,7 +11,7 @@
 | `git_beginner_status` | “体检”：git 是否安装、是否仓库、当前分支、用户名/邮箱、改动清单、冲突、合并中状态、远程地址、领先/落后远程 |
 | `git_beginner_setup` | 第一次使用时的初始化：设全局名字/邮箱、默认分支 main、初始化仓库、绑定远程地址 |
 | `git_beginner_pull` | 克隆（无仓库时）/ 拉取（`git pull --no-rebase` 合并方式，绝不改写用户自己的提交） |
-| `git_beginner_conflict` | 冲突向导：列冲突文件 → 三个选择（保留我的 / 保留对方的 / 手动改）→ 自动解决或展示冲突内容 |
+| `git_beginner_conflict` | 冲突向导：列冲突文件 → 选择（保留我的 / 保留对方的 / 手动改）→ 自动解决、展示内容或标记手动改完 |
 | `git_beginner_commit` | 先预览将提交的文件清单，请用户用一句话说明改动，再执行 `git add -A` + `git commit` |
 | `git_beginner_push` | 上传到远程；首次自动 `-u origin HEAD`；被拒绝提示先拉取；认证失败给通俗说明 |
 
