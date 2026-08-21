@@ -1,5 +1,7 @@
 # easy-git —— 傻瓜式 git 新手助手（DSH 插件）
 
+> 📖 演示文档：**[DEMO.md](DEMO.md)**（中文）· **[DEMO.en.md](DEMO.en.md)**（English）
+
 一个**标准 DSH 插件**（Cordis 插件包），把 git 操作包装成傻瓜式向导，面向完全不会使用 git 的用户。
 **你不需要会任何命令行命令**——全程大白话问答，助手替你执行所有操作。
 主要场景是 GitLab / GitHub，兼容 Gitee 等一切基于 git 的托管平台。
