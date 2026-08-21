@@ -19,7 +19,11 @@
   "files": [
     "lib",
     "bin",
-    "src"
+    "src",
+    "scripts",
+    "skills",
+    "codex",
+    "command"
   ],
   "keywords": [
     "dsh",
