@@ -1,5 +1,7 @@
 # easy-git —— 傻瓜式 git 新手助手（DSH 插件）
 
+🌐 语言：简体中文（本页）· [English](README.en.md)
+
 > 📖 演示文档：**[DEMO.md](DEMO.md)**（中文）· **[DEMO.en.md](DEMO.en.md)**（English）
 
 一个**标准 DSH 插件**（Cordis 插件包），把 git 操作包装成傻瓜式向导，面向完全不会使用 git 的用户。
@@ -57,7 +59,7 @@ npm install    # 或 pnpm install（解析 peerDependencies）
 ```
 
 `lib/index.js` 是插件本体：ESM 模块，导出 `{ name, inject, apply }` 标准 Cordis 插件，
-通过 `ctx.tools.register(defineTool(...))` 注册六个工具。
+通过 `ctx.tools.register(defineTool(...))` 注册七个工具。
 
 ## 实现要点
 
