@@ -10,6 +10,9 @@ npm install -g github:easysir10/easy-git
 easy-git --version   # 验证：应显示 v0.4.0
 ```
 
+> 💡 也可以直接用安装器一步到位：`easy-git install` 按菜单选择 Codex（或输入 `a` 全部安装），
+> 会自动把斜杠命令文件放到 `~/.codex/commands/`，无需手动复制。
+
 ## 二、放置斜杠命令文件
 
 把仓库里的 [codex/easy-git.md](../codex/easy-git.md) 复制到：

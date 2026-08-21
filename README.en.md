@@ -38,7 +38,19 @@
 
 ## 🚀 Quick start (DSH users)
 
-### 🤖 One-sentence install (recommended: let an agent do it)
+### 🎯 Interactive installer (pick the agents, recommended)
+
+Install the CLI first, then run the installer and pick from the menu (DSH plugin / Codex / Claude Code / Cursor / universal AGENTS.md):
+
+```bash
+npm install -g github:easysir10/easy-git
+easy-git install        # interactive menu (multi-select, a = all)
+easy-git install dsh,codex   # or specify directly
+```
+
+When it says "✅ installed", restart the relevant app as prompted.
+
+### 🤖 One-sentence install (let an agent do it)
 
 > Send this to your agent (DSH / Claude Code / Cursor …) and let it handle the rest:
 >

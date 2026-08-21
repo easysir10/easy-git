@@ -38,7 +38,19 @@
 
 ## 🚀 快速开始（DSH 用户）
 
-### 🤖 一句话安装（推荐：让 agent 自己装）
+### 🎯 交互式安装（选择要装的 agent，推荐）
+
+先装好 CLI，再运行安装器，按菜单勾选要装的目标（DSH 插件 / Codex / Claude Code / Cursor / 通用 AGENTS.md）：
+
+```bash
+npm install -g github:easysir10/easy-git
+easy-git install        # 交互式菜单（多选，a=全部）
+easy-git install dsh,codex   # 或直接指定
+```
+
+装完提示"✅ 已安装"，按提示重启对应软件即可用。
+
+### 🤖 一句话安装（让 agent 自己装）
 
 > 把这句话发给你的 agent（DSH / Claude Code / Cursor…），剩下的它来做：
 >

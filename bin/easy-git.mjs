@@ -20,13 +20,19 @@
  *
  * 所有输出为中文大白话；退出码 0=成功，1=需要用户处理/友好错误。
  */
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { readFileSync, mkdirSync, copyFileSync, existsSync, writeFileSync, appendFileSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { homedir } from 'node:os'
+import { spawnSync } from 'node:child_process'
 import readline from 'node:readline'
 import {
   PLATFORM_INFO, cap, collectFacts, friendlyChange, gitRun,
   guardEnv, inferPlatformFromRemote, readPlatform, savePlatform, statusReport,
 } from '../src/core.js'
+
+// 包根目录（用于定位 skills/、codex/ 等资源；全局安装与仓库内运行都适用）
+const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const VERSION = '0.4.0'
 
@@ -77,6 +83,7 @@ function usage() {
   easy-git log [目录] [-n 10]                      提交历史
   easy-git undo [目录] [--confirm]                 撤销上一次提交（保留代码）
   easy-git branch [目录] [list|create NAME|switch NAME|merge NAME]
+  easy-git install [dsh,codex,claude,cursor,agents|all]  交互式安装：选择要装的 agent
   easy-git help | --version
 `)
 }
@@ -415,6 +422,101 @@ async function cmdBranch(dir, args) {
   out('未知操作：' + action + '（可选 list / create / switch / merge）', 1)
 }
 
+// ---------- 安装器：选择要装的 agent ----------
+const INSTALL_TARGETS = [
+  { key: 'dsh', label: 'DSH 插件（web profile，工具方式）' },
+  { key: 'codex', label: 'Codex（斜杠命令 /easy-git + 描述）' },
+  { key: 'claude', label: 'Claude Code（skill）' },
+  { key: 'cursor', label: 'Cursor（rules）' },
+  { key: 'agents', label: '当前项目 AGENTS.md（通用，Codex/Cursor/其他都读）' },
+]
+
+function runShell(cmd) {
+  return spawnSync(cmd, { shell: true, stdio: 'inherit' })
+}
+
+async function installTarget(key) {
+  try {
+    if (key === 'dsh') {
+      if (runShell('pnpm --version').status !== 0) {
+        console.log('  · 安装 pnpm（dsh plugin 的下载器）...')
+        if (runShell('npm install -g pnpm').status !== 0) return '❌ DSH：pnpm 安装失败'
+      }
+      if (runShell('dsh plugin --profile web add github:easysir10/easy-git').status !== 0) return '❌ DSH：dsh plugin add 失败'
+      const patch = resolve(homedir(), '.dsh', 'profiles', 'web', 'cordis.patch.yml')
+      const block = '\n- insert:\n    - id: git-beginner-helper\n      name: \'@easysir10/easy-git\'\n'
+      if (existsSync(patch)) {
+        const c = readFileSync(patch, 'utf8')
+        if (!c.includes('git-beginner-helper')) {
+          writeFileSync(patch, c.replace(/^\s*\[\]\s*$/m, '').trimEnd() + block, 'utf8')
+        }
+      } else {
+        mkdirSync(dirname(patch), { recursive: true })
+        writeFileSync(patch, block, 'utf8')
+      }
+      return '✅ DSH：已安装（记得重启 dsh）'
+    }
+    if (key === 'codex') {
+      const dest = resolve(homedir(), '.codex', 'commands')
+      mkdirSync(dest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'codex', 'easy-git.md'), resolve(dest, 'easy-git.md'))
+      return '✅ Codex：已安装（重启 Codex 后用 /easy-git 描述）'
+    }
+    if (key === 'claude') {
+      const dest = resolve(homedir(), '.claude', 'skills', 'easy-git')
+      mkdirSync(dest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'SKILL.md'))
+      return '✅ Claude Code：已安装（自动识别 skill）'
+    }
+    if (key === 'cursor') {
+      const dest = resolve(homedir(), '.cursor', 'rules')
+      mkdirSync(dest, { recursive: true })
+      copyFileSync(resolve(PKG_ROOT, 'skills', 'easy-git', 'SKILL.md'), resolve(dest, 'easy-git.mdc'))
+      return '✅ Cursor：已安装（rules 自动生效）'
+    }
+    if (key === 'agents') {
+      const dest = resolve(process.cwd(), 'AGENTS.md')
+      const block = '\n## easy-git（新手友好的 git 助手）\n\n用户提到 git / 提交 / 拉取 / 推送 / 冲突 / 仓库 / 撤销 / 分支 / 历史时：\n- 优先使用 easy-git 命令（easy-git status / commit / push / pull / conflict / log / undo / branch / setup / platform / start），没有则用 git 命令按通用 Skill（skills/easy-git/SKILL.md）引导；\n- 把用户当第一次接触 git 的新手：全程中文大白话，由你执行所有命令，绝不让用户输入命令行命令或填路径；危险操作先说明后果再执行。\n'
+      if (existsSync(dest)) {
+        if (readFileSync(dest, 'utf8').includes('easy-git')) return '✅ AGENTS.md：已存在 easy-git 条目（跳过）'
+        appendFileSync(dest, block, 'utf8')
+      } else {
+        writeFileSync(dest, block, 'utf8')
+      }
+      return '✅ AGENTS.md：已写入当前项目'
+    }
+    return '❌ 未知目标：' + key
+  } catch (e) {
+    return '❌ ' + key + '：安装出错 ' + ((e && e.message) || String(e))
+  }
+}
+
+async function cmdInstall(argv) {
+  // 支持：easy-git install [dsh,codex,...|all]  （不传则交互选择）
+  const args = argv.filter((a) => a !== 'install')
+  let picks = []
+  if (args.length) {
+    picks = args.join(',').split(/[,，\s]+/).map((s) => s.trim()).filter(Boolean)
+    if (picks.includes('all')) picks = INSTALL_TARGETS.map((t) => t.key)
+  } else {
+    console.log('🎯 要把 easy-git 安装到哪些 agent？（可多选，用逗号分隔；输入 a 安装全部）')
+    INSTALL_TARGETS.forEach((t, i) => console.log(`  ${i + 1}. ${t.label}`))
+    const ans = (await ask('输入序号（如 1,3 或 a）：')).toLowerCase()
+    if (ans === 'a' || ans === 'all') picks = INSTALL_TARGETS.map((t) => t.key)
+    else picks = ans.split(/[,，\s]+/).map((s) => INSTALL_TARGETS[parseInt(s, 10) - 1] && INSTALL_TARGETS[parseInt(s, 10) - 1].key).filter(Boolean)
+  }
+  const valid = new Set(INSTALL_TARGETS.map((t) => t.key))
+  picks = picks.filter((k) => valid.has(k))
+  if (!picks.length) out('未选择任何可安装的目标，退出。', 1)
+  console.log('')
+  const results = []
+  for (const k of picks) results.push(await installTarget(k))
+  console.log('')
+  console.log(results.join('\n'))
+  console.log('')
+  console.log('提示：DSH 装完需重启 dsh；Codex 装完需重启 Codex；其他自动生效。')
+}
+
 // ---------- 主入口 ----------
 async function main() {
   const argv = process.argv.slice(2)
@@ -436,6 +538,7 @@ async function main() {
       case 'log': return await cmdLog(dir, opts)
       case 'undo': return await cmdUndo(dir, opts)
       case 'branch': return await cmdBranch(dir, positional.slice(1))
+      case 'install': return await cmdInstall(argv)
       default: usage(); console.log('\n未知命令：' + cmd); process.exit(1)
     }
   } catch (err) {
