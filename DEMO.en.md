@@ -1,4 +1,6 @@
-# easy-git Plugin Demo Document
+# 🎬 easy-git Plugin Demo Document
+
+[![version](https://img.shields.io/badge/version-0.3.1-blue)]() [![license](https://img.shields.io/badge/license-MIT-green)]() [![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
 
 > The beginner-friendly Git assistant — someone who has never used Git or a command line can do everything through plain-language conversation.
 

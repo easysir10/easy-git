@@ -1,83 +1,128 @@
-# easy-git — Beginner-Friendly Git Assistant (DSH Plugin)
+<div align="center">
 
-🌐 Language: English (this page) · [简体中文](README.md)
+# 🧑‍💻 easy-git
 
-> 📖 Demo documents: **[DEMO.en.md](DEMO.en.md)** ｜ 🧩 Universal Skill (for other agents): **[skills/](skills/README.md)**
+**Beginner-Friendly Git Assistant** — zero command line, plain-language guidance for everything Git
 
-A **standard DSH plugin** (Cordis plugin package) that wraps Git operations into a beginner-friendly,
-plain-language assistant for people who have never used Git.
-**You don't need a single command-line command** — everything is done for you through Q&A in plain language.
-Works with GitLab / GitHub and any Git hosting platform (Gitee, etc.).
+[![version](https://img.shields.io/badge/version-0.3.1-blue)]()
+[![license](https://img.shields.io/badge/license-MIT-green)]()
+[![platform](https://img.shields.io/badge/platform-DSH-orange)]()
+[![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
+[![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-lightgrey)]()
 
-> **Note:** the plugin's built-in prompts are currently in Chinese (localization is planned).
-> The demo documents are translated so the flow is easy to follow.
+🌐 [English](README.en.md) · [简体中文](README.md) ｜ 📖 [Demo](DEMO.en.md) ｜ 🧩 [Universal Skill](skills/README.md)
 
-## Provided tools
+</div>
+
+---
+
+## ✨ What is this
+
+> [!TIP]
+> **You don't need a single command-line command** — hand all Git operations to the assistant and talk in plain language.
+
+- 🧩 A **standard DSH plugin** (Cordis plugin package) that wraps Git into a beginner-friendly assistant
+- 🌍 Works with **GitLab / GitHub / Gitee** — any Git hosting platform
+- 📦 The same logic also ships as a **universal Skill** for Claude Code, Cursor, and other agents
+
+### 🎯 Highlights
+
+- 🧭 **First-run onboarding**: pick a platform → set identity → init/clone, step by step
+- 🛡️ **Safety rails**: commit/push blocked while conflicts are unresolved; merges in progress are auto-detected; technical errors never shown to you
+- 🌐 **Platform-tailored**: GitHub / GitLab / Gitee each get their own repo-creation, clone-URL and token steps
+- ✂️ **No paths, no commands**: you never type a folder path; jargon is always explained
+
+## 🧰 Provided tools (11)
 
 | Tool | What it does |
 | --- | --- |
-| `git_beginner_platform` | Determines the platform on first use (GitHub / GitLab / Gitee / other); all guidance is then tailored to that platform |
-| `git_beginner_status` | "Health check": Git installed?, is this a repo, current branch, name/email, change list, conflicts, merge-in-progress, remote URL, ahead/behind |
-| `git_beginner_setup` | First-time setup: global name/email, default branch `main`, init a repo, bind a remote URL |
-| `git_beginner_pull` | Clone (no repo yet) / pull (`git pull --no-rebase`, merge style — never rewrites your own commits) |
-| `git_beginner_conflict` | Conflict wizard: list conflicted files → choose (keep mine / keep theirs / manual) → auto-resolve, show content, or mark manually-resolved files |
-| `git_beginner_commit` | Previews the file list first, asks you for a one-sentence summary, then runs `git add -A` + `git commit` |
-| `git_beginner_push` | Uploads to remote; first push auto-sets the upstream (`-u origin HEAD`); rejected → suggests pulling first; auth failure → plain-language explanation |
-| `git_beginner_log` | Read your commit history in plain language (time, author, message) |
-| `git_beginner_undo` | Undo the last commit while keeping your code changes, with confirmation |
-| `git_beginner_branch` | Branch management: list / create / switch / merge (a branch = a parallel line of code) |
-| `git_beginner_start` | "Get started with Git" onboarding: checks progress (platform → identity → repo) and tells you the next step |
+| `git_beginner_start` | 🎯 "Get started with Git" onboarding: checks progress (platform → identity → repo) and tells you the next step |
+| `git_beginner_platform` | 🌍 Picks the platform (GitHub / GitLab / Gitee / other); all guidance is then tailored to it |
+| `git_beginner_status` | 🔍 Health check: Git installed?, branch, identity, changes, conflicts, merge-in-progress, remote, ahead/behind |
+| `git_beginner_setup` | ⚙️ First-time setup: global name/email, default branch `main`, init a repo, bind a remote |
+| `git_beginner_commit` | 📸 Commit: preview the list first → one-sentence summary → save a "snapshot" |
+| `git_beginner_push` | ☁️ Push: upload to remote; rejected → pull first; auth failure → plain-language guidance |
+| `git_beginner_pull` | ⬇️ Pull / clone: merge style — never rewrites your own commits |
+| `git_beginner_conflict` | ⚔️ Conflict wizard: list conflicted files → choose (keep mine / keep theirs / manual) |
+| `git_beginner_log` | 📜 Read commit history (time, author, message) |
+| `git_beginner_undo` | ↩️ Undo the last commit while keeping your code (with confirmation) |
+| `git_beginner_branch` | 🌿 Branch management: list / create / switch / merge |
 
-## First-use flow (beginner friendly)
+## 🚀 Quick start (DSH)
 
-1. The first time you say "check my git status", the assistant asks you to pick a **platform**: GitHub / GitLab / Gitee / other;
-2. Once chosen (or saved with `git_beginner_platform`), every later step (create repo, clone URL, access token, etc.) follows that platform;
-3. If your repository already has a remote URL, the assistant **auto-detects** the platform — no need to choose; switch anytime by saying "switch to GitLab";
-4. If the "guidance platform" and the "remote repository" don't match (e.g. guidance is GitLab but the remote is GitHub), the health check **reminds you automatically** — say "switch to GitHub" and it's done.
-
-## Installation (for dsh users)
-
-Install from this Git repository into your dsh profile (`web` below; `headless` or other profiles are the same):
+> [!IMPORTANT]
+> Install pnpm first (the downloader behind `dsh plugin`): `npm install -g pnpm`
 
 ```bash
-# 1) Install the plugin into the profile (equivalent to `pnpm add` in the profile dir)
+# 1️⃣ Install the plugin into your profile
 dsh plugin --profile web add github:easysir10/easy-git
-
-# 2) Enable the plugin row in the profile's patch file
-#    Edit $DSH_HOME/profiles/web/cordis.patch.yml, add:
-#    - insert:
-#        - id: git-beginner-helper
-#          name: '@easysir10/easy-git'
 ```
 
-Then **restart dsh** (plugins mount with the composition at startup). After that, just tell the assistant
-"commit / pull / push / resolve conflicts / check my git status" and it walks you through everything.
+```yaml
+# 2️⃣ Enable it in the startup list: edit $DSH_HOME/profiles/web/cordis.patch.yml
+- insert:
+    - id: git-beginner-helper
+      name: '@easysir10/easy-git'
+```
 
-> Tips:
-> - You can also use `$DSH_HOME/cordis.patch.yml` (home-level patch, higher priority) with the same syntax.
-> - To pin a version, add a commit reference, e.g. `github:easysir10/easy-git#main` or `#<commit-sha>`.
-> - Authentication (HTTPS token / SSH key) is configured by each user on their own machine; the plugin does not manage credentials.
+> [!NOTE]
+> **Restart dsh** after editing. Then just tell the assistant "commit / pull / push / resolve conflicts / check my git status".
+> To update later, say "**update the plugin**" and the assistant runs `dsh plugin --profile web update @easysir10/easy-git` for you.
 
-## Run from source / develop
+## 🗺️ First-use flow
+
+1. Say "**check my git status**" — the assistant first asks you to pick a **platform** (GitHub / GitLab / Gitee / other);
+2. Every later step (create repo, clone URL, access token) follows that platform;
+3. If your repository already has a remote URL, the platform is **auto-detected** — no need to choose; switch anytime by saying "switch to GitLab";
+4. If the guidance platform and the remote don't match, the health check **reminds you automatically** — one sentence to switch.
+
+## 📚 Documentation
+
+| Doc | What it is |
+| --- | --- |
+| [DEMO.en.md](DEMO.en.md) | English demo: the complete guided flow |
+| [DEMO.md](DEMO.md) | 中文演示：小白全流程对话剧本 |
+| [skills/README.md](skills/README.md) | Universal Skill: install into Claude Code / Cursor / Codex, etc. |
+| [skills/easy-git/SKILL.md](skills/easy-git/SKILL.md) | The Skill itself (framework-agnostic, works with any agent) |
+
+## 🛠️ Run from source / develop
 
 ```bash
 git clone https://github.com/easysir10/easy-git.git
 cd easy-git
-npm install    # or pnpm install (resolves peerDependencies)
+npm install   # or pnpm install (resolves peerDependencies)
 ```
 
 `lib/index.js` is the plugin itself: an ESM module exporting the standard Cordis plugin `{ name, inject, apply }`,
 registering the eleven tools via `ctx.tools.register(defineTool(...))`.
 
-## Implementation highlights
+## ⚙️ Implementation highlights
 
-- **Spawns `git.exe` directly** (`ctx.subprocess`) — no shell involved, so no quoting/escaping problems;
-  the Git path resolves via PATH → common install locations, compatible with any Git installation.
-- Built-in timeouts (`ctx.timer` + `terminate()`) and cancellation (`exec.signal`).
-- Beginner-friendly design: commit/pull/push are blocked while conflicts are unresolved; detects `MERGE_HEAD`/`CHERRY_PICK_HEAD`/`REBASE_HEAD`,
-  so an in-progress merge can be finished with a commit even when there are no file changes.
-- All prompts are plain Chinese, guiding the user as if they know nothing about Git.
+- **Spawns `git.exe` directly** (`ctx.subprocess`) — no shell involved, so no quoting/escaping problems; the Git path resolves via PATH → common install locations
+- **Built-in timeouts & cancellation** (`ctx.timer` + `terminate()` + `exec.signal`)
+- **Safety rails**: commit/pull/push blocked while conflicts are unresolved; detects `MERGE_HEAD`/`CHERRY_PICK_HEAD`/`REBASE_HEAD`, so an in-progress merge can be finished with a commit
+- **Plain Chinese prompts** that treat the user as a complete Git beginner
 
-## License
+## ❓ FAQ
+
+<details>
+<summary>I can't use the command line. Is this for me?</summary>
+
+Absolutely. You only need to talk, choose, paste links, and click website buttons.
+</details>
+
+<details>
+<summary>What if I switch platforms?</summary>
+
+Say "switch to GitHub" or "switch to GitLab" — done, instantly.
+</details>
+
+<details>
+<summary>How do I update the plugin?</summary>
+
+Say "update the plugin" and the assistant runs the update command; then restart dsh. See "Quick start" above.
+</details>
+
+## 📄 License
 
 MIT

@@ -1,79 +1,128 @@
-# easy-git —— 新手友好的 git 助手（DSH 插件）
+<div align="center">
 
-🌐 语言：简体中文（本页）· [English](README.en.md)
+# 🧑‍💻 easy-git
 
-> 📖 演示文档：**[DEMO.md](DEMO.md)** ｜ 🧩 通用 Skill（其他 agent 用）：**[skills/](skills/README.md)**
+**新手友好的 Git 助手** —— 零命令行、全程大白话，带你完成所有 git 操作
 
-一个**标准 DSH 插件**（Cordis 插件包），把 git 操作包装成新手友好的向导，面向完全不会使用 git 的用户。
-**你不需要会任何命令行命令**——全程大白话问答，助手替你执行所有操作。
-主要场景是 GitLab / GitHub，兼容 Gitee 等一切基于 git 的托管平台。
+[![version](https://img.shields.io/badge/version-0.3.1-blue)]()
+[![license](https://img.shields.io/badge/license-MIT-green)]()
+[![platform](https://img.shields.io/badge/platform-DSH-orange)]()
+[![beginner](https://img.shields.io/badge/beginner--friendly-ff69b4)]()
+[![docs](https://img.shields.io/badge/docs-%E4%B8%AD%E6%96%87%20%7C%20English-lightgrey)]()
 
-## 提供的工具
+🌐 [简体中文](README.md) · [English](README.en.md) ｜ 📖 [演示文档](DEMO.md) ｜ 🧩 [通用 Skill](skills/README.md)
+
+</div>
+
+---
+
+## ✨ 这是什么
+
+> [!TIP]
+> **你不需要会任何命令行命令** —— 把所有 git 操作交给助手，用大白话对话就行。
+
+- 🧩 一个**标准 DSH 插件**（Cordis 插件包），把 git 操作包装成新手友好的向导
+- 🌍 兼容 **GitLab / GitHub / Gitee** 等一切 git 托管平台
+- 📦 同一套逻辑还提供**通用 Skill**，Claude Code / Cursor 等任何 agent 都能用
+
+### 🎯 核心亮点
+
+- 🧭 **首次自动引导**：选平台 → 设身份 → 初始化/克隆，一步步带你
+- 🛡️ **防呆设计**：冲突未解决禁止提交/推送；合并进行中自动识别；技术报错不外露
+- 🌐 **平台定制**：GitHub / GitLab / Gitee 各自的新建仓库、克隆链接、令牌步骤
+- ✂️ **零路径零命令**：不用填文件夹路径，专业词出现必解释
+
+## 🧰 提供的工具（11 个）
 
 | 工具 | 作用 |
 | --- | --- |
-| `git_beginner_platform` | 第一次使用时确定平台（GitHub / GitLab / Gitee / 其他），记住后所有引导都按该平台定制 |
-| `git_beginner_status` | “体检”：git 是否安装、是否仓库、当前分支、用户名/邮箱、改动清单、冲突、合并中状态、远程地址、领先/落后远程 |
-| `git_beginner_setup` | 第一次使用时的初始化：设全局名字/邮箱、默认分支 main、初始化仓库、绑定远程地址 |
-| `git_beginner_pull` | 克隆（无仓库时）/ 拉取（`git pull --no-rebase` 合并方式，绝不改写用户自己的提交） |
-| `git_beginner_conflict` | 冲突向导：列冲突文件 → 选择（保留我的 / 保留对方的 / 手动改）→ 自动解决、展示内容或标记手动改完 |
-| `git_beginner_commit` | 先预览将提交的文件清单，请用户用一句话说明改动，再执行 `git add -A` + `git commit` |
-| `git_beginner_push` | 上传到远程；首次自动 `-u origin HEAD`；被拒绝提示先拉取；认证失败给通俗说明 |
-| `git_beginner_log` | 大白话查看提交历史（时间、作者、说明），想看某次详细改动也能打开 |
-| `git_beginner_undo` | 撤销上一次提交但保留代码改动，带确认（后悔药） |
-| `git_beginner_branch` | 分支管理：查看 / 新建 / 切换 / 合并（分支 = 代码的平行线） |
-| `git_beginner_start` | “开始使用 git”引导：检查进度（平台 → 身份 → 仓库）并提示下一步 |
+| `git_beginner_start` | 🎯 “开始使用 git”引导：检查进度（平台 → 身份 → 仓库）并提示下一步 |
+| `git_beginner_platform` | 🌍 确定平台（GitHub / GitLab / Gitee / 其他），之后所有引导按该平台定制 |
+| `git_beginner_status` | 🔍 体检：git 是否安装、分支、身份、改动、冲突、合并中、远程、领先/落后 |
+| `git_beginner_setup` | ⚙️ 首次配置：全局名字/邮箱、默认分支 main、初始化仓库、绑定远程 |
+| `git_beginner_commit` | 📸 提交：先预览清单 → 一句话说明 → 保存“快照” |
+| `git_beginner_push` | ☁️ 推送：上传到远程；被拒绝提示先拉取；认证失败给通俗指引 |
+| `git_beginner_pull` | ⬇️ 拉取/克隆：合并方式，绝不改写你的提交 |
+| `git_beginner_conflict` | ⚔️ 冲突向导：列冲突文件 → 三选一（留我的 / 留对方的 / 手动改） |
+| `git_beginner_log` | 📜 查看提交历史（时间、作者、说明） |
+| `git_beginner_undo` | ↩️ 撤销上一次提交但保留代码（后悔药，带确认） |
+| `git_beginner_branch` | 🌿 分支管理：查看 / 新建 / 切换 / 合并 |
 
-## 首次使用流程（新手友好）
+## 🚀 快速开始（DSH）
 
-1. 第一次问助手“看下 git 现状”，助手会先让你选**平台**：GitHub / GitLab / Gitee / 其他；
-2. 选好后（或用 `git_beginner_platform` 保存），之后所有步骤（新建仓库、克隆链接、访问令牌等）都会按这个平台一步步引导；
-3. 如果你的仓库已经有远程地址，助手会**自动识别**平台，无需再选；想换平台直接说“改成 GitLab”即可。
-4. 如果“引导平台”和“远程仓库”对不上（例如引导是 GitLab 但远程是 GitHub），体检时会**自动提醒**，说一句“改成 GitHub”就能切换。
-
-## 安装（对使用 dsh 的人）
-
-从本 git 仓库安装到你的 dsh profile（以 `web` 为例；`headless` 或其他 profile 同理）：
+> [!IMPORTANT]
+> 先安装 pnpm（`dsh plugin` 的下载器）：`npm install -g pnpm`
 
 ```bash
-# 1) 把插件装进 profile（等价于在 profile 目录执行 pnpm add）
+# 1️⃣ 安装插件到 profile
 dsh plugin --profile web add github:easysir10/easy-git
-
-# 2) 在 profile 的补丁文件里启用插件行
-#    编辑 $DSH_HOME/profiles/web/cordis.patch.yml，加上：
-#    - insert:
-#        - id: git-beginner-helper
-#          name: '@easysir10/easy-git'
 ```
 
-然后**重启 dsh**（插件在启动时随组合树挂载）。之后只要对助手说
-“帮我提交 / 拉取 / 推送 / 解决冲突 / 看下 git 现状”，助手就会走这套简单的引导流程。
+```yaml
+# 2️⃣ 登记到启动清单：编辑 $DSH_HOME/profiles/web/cordis.patch.yml
+- insert:
+    - id: git-beginner-helper
+      name: '@easysir10/easy-git'
+```
 
-> 提示：
-> - 也可以改 `$DSH_HOME/cordis.patch.yml`（home 级补丁，优先级更高），写法相同。
-> - 想固定版本可以加 commit 引用，如 `github:easysir10/easy-git#main` 或 `#<commit-sha>`。
-> - 认证方式（HTTPS 令牌 / SSH 密钥）由各用户在自己机器上自行配置，插件不代管凭据。
+> [!NOTE]
+> 改完**重启 dsh** 生效。之后对助手说“帮我提交 / 拉取 / 推送 / 解决冲突 / 看下 git 现状”即可。
+> 以后更新：直接说“**更新插件**”，助手帮你执行 `dsh plugin --profile web update @easysir10/easy-git`。
 
-## 从源码运行 / 开发
+## 🗺️ 首次使用流程
+
+1. 说“**看下 git 现状**”，助手先让你选**平台**（GitHub / GitLab / Gitee / 其他）；
+2. 之后所有步骤（新建仓库、克隆链接、访问令牌）都按该平台引导；
+3. 仓库已有远程地址时，助手**自动识别**平台，无需再选；换平台说“改成 GitLab”即可；
+4. “引导平台”和“远程仓库”不一致时，体检会**自动提醒**，说一句就切换。
+
+## 📚 文档中心
+
+| 文档 | 说明 |
+| --- | --- |
+| [DEMO.md](DEMO.md) | 中文演示：小白全流程对话剧本 |
+| [DEMO.en.md](DEMO.en.md) | English demo：完整的引导流程 |
+| [skills/README.md](skills/README.md) | 通用 Skill：装进 Claude Code / Cursor / Codex 等 |
+| [skills/easy-git/SKILL.md](skills/easy-git/SKILL.md) | Skill 本体（框架无关，任何 agent 可用） |
+
+## 🛠️ 从源码运行 / 开发
 
 ```bash
 git clone https://github.com/easysir10/easy-git.git
 cd easy-git
-npm install    # 或 pnpm install（解析 peerDependencies）
+npm install   # 或 pnpm install（解析 peerDependencies）
 ```
 
-`lib/index.js` 是插件本体：ESM 模块，导出 `{ name, inject, apply }` 标准 Cordis 插件，
+`lib/index.js` 是插件本体：ESM 模块，导出标准 Cordis 插件 `{ name, inject, apply }`，
 通过 `ctx.tools.register(defineTool(...))` 注册十一个工具。
 
-## 实现要点
+## ⚙️ 实现要点
 
-- **直接 spawn `git.exe`**（`ctx.subprocess`），不经过任何 shell，彻底避免引号/转义问题；
-  git 路径按 PATH → 常见安装目录兜底解析，兼容任何 git 安装。
-- 自带超时（`ctx.timer` + `terminate()`）与取消（`exec.signal`）。
-- 防呆设计：冲突未解决时禁止提交/拉取/推送；检测 `MERGE_HEAD`/`CHERRY_PICK_HEAD`/`REBASE_HEAD`，
-  合并进行中即使没有文件改动也能用“提交”收尾。
-- 所有提示均为中文大白话，把用户当完全不懂 git 的人来引导。
+- **直接 spawn `git.exe`**（`ctx.subprocess`），不经过任何 shell，彻底避免引号/转义问题；git 路径按 PATH → 常见安装目录兜底
+- **自带超时与取消**（`ctx.timer` + `terminate()` + `exec.signal`）
+- **防呆设计**：冲突未解决禁止提交/拉取/推送；检测 `MERGE_HEAD`/`CHERRY_PICK_HEAD`/`REBASE_HEAD`，合并进行中也能用提交收尾
+- **全中文大白话**，把用户当成第一次接触 git 的新手
 
-## License
+## ❓ 常见问题
+
+<details>
+<summary>我不会命令行，能用吗？</summary>
+
+完全能。你只需要：说话、做选择、贴链接、点网页按钮。
+</details>
+
+<details>
+<summary>换平台了怎么办？</summary>
+
+直接说“改成 GitHub”或“改成 GitLab”，一次生效。
+</details>
+
+<details>
+<summary>插件怎么更新？</summary>
+
+说“更新插件”，助手执行更新命令；然后重启 dsh 生效。详见上方“快速开始”。
+</details>
+
+## 📄 License
 
 MIT
