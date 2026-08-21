@@ -6,7 +6,7 @@ description: easy-git —— 新手友好的 git 助手：体检、提交、推�
 
 规则：
 
-1. **先体检**：用 `easy-git status` 看当前目录的 git 现状（如果 `easy-git` 命令不存在，提示用户运行 `npm install -g github:easysir10/easy-git` 安装，或用普通 git 命令代替继续）。
+1. **先体检**：用 `easy-git status` 看当前目录的 git 现状（如果 `easy-git` 命令不存在，提示用户运行 `npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main` 安装，或用普通 git 命令代替继续）。
 2. **把用户描述翻译成对应的 easy-git 操作**：
    - 提交 → 先 `easy-git status` 预览清单，让用户用一句话说明改了什么，再 `easy-git commit -m "那句话"`
    - 推送 → `easy-git push`

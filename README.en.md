@@ -21,8 +21,10 @@ Installation is one command, and you pick which agents to install for (**includi
 ## 🚀 Install (one command, done)
 
 ```bash
-npm install -g github:easysir10/easy-git
+npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
 ```
+
+> Shorter form: `npm install -g github:easysir10/easy-git` (same effect; on some Windows setups npm installs github sources via a symlink that can break the install — if that happens, use the tarball URL above).
 
 **The moment the install finishes, a selection menu pops up automatically** (↑↓ move · Space toggle · Enter confirm) — pick and it installs:
 

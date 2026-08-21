@@ -5,8 +5,10 @@
 ## 安装（统一安装器里勾选 DSH 即可）
 
 ```bash
-npm install -g github:easysir10/easy-git
+npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
 ```
+
+> 也可写短：`npm install -g github:easysir10/easy-git`（个别 Windows 环境下 npm 对 github 源会走符号链接导致安装失败，遇到就用上面的 tarball 直链）。
 
 安装完成时自动弹出菜单，**选 1 = DSH 插件**（或输入 `a` 全部安装）。安装器自动完成：装 pnpm（如缺）→ `dsh plugin add` → 登记 `cordis.patch.yml`。
 

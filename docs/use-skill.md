@@ -23,7 +23,7 @@ agent 会按 easy-git 的规则为你完成对应的 git 操作——和 DSH 里
 ## 一键安装（推荐）
 
 ```bash
-npm install -g github:easysir10/easy-git
+npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
 ```
 
 **安装完成的那一刻，会自动弹出"选择要安装的 agent"菜单**——勾选 Codex / Claude Code / Cursor / Qoder / QoderCN 等（或输入 `a` 全装），自动装好 skill + 斜杠命令；之后随时 `easy-git install` 重选。

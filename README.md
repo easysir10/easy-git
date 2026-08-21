@@ -21,8 +21,10 @@
 ## 🚀 安装（一条命令，一步到位）
 
 ```bash
-npm install -g github:easysir10/easy-git
+npm install -g https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main
 ```
+
+> 也可以写短一点：`npm install -g github:easysir10/easy-git`（效果相同；个别 Windows 环境下 npm 对 github 源会走符号链接导致安装失败，遇到就用上面的 tarball 直链）。
 
 **安装完成的瞬间会自动弹出选择菜单**（↑↓ 移动 · 空格 勾选 · 回车 确认），选完自动装好：
 

@@ -7,6 +7,8 @@
 - 🆕 **所有 agent 支持 `/easy-git 描述` 斜杠命令**（与 Codex 一致）：Claude Code（`~/.claude/commands/`）、Cursor（`~/.cursor/commands/`）、Qoder（`~/.qoder/commands/`）、QoderCN（`~/.qoder-cn/commands/`），安装器勾选即自动装好
 - 🆕 新增纯 Markdown 斜杠命令模板 `command/easy-git.md`：Cursor / Qoder / QoderCN 的斜杠命令不接受 frontmatter，与带 frontmatter 的 `codex/easy-git.md`（Codex / Claude Code 用）区分，安装器自动选对模板
 - ✏️ 安装菜单标签更新：Claude Code / Cursor / Qoder / QoderCN 均标注"skill/rules + /easy-git 斜杠命令"
+- 🔴 修复：`package.json` 的 `files` 字段补全 `scripts` / `skills` / `codex` / `command`（此前漏了这些目录，npm 从 GitHub 安装时会缺 postinstall 脚本和资源）
+- 🔴 修复：一键安装命令改为 **GitHub tarball 直链**（`https://codeload.github.com/easysir10/easy-git/tar.gz/refs/heads/main`）——个别 Windows 环境下 npm 对 `github:` 源走符号链接（Junction）导致安装失败；短写 `npm install -g github:easysir10/easy-git` 仍可用
 
 ## 0.5.0（2026-08-21）
 
