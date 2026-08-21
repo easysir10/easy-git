@@ -7,12 +7,19 @@
 
 | 工具 | 作用 |
 | --- | --- |
+| `git_beginner_platform` | 第一次使用时确定平台（GitHub / GitLab / Gitee / 其他），记住后所有引导都按该平台定制 |
 | `git_beginner_status` | “体检”：git 是否安装、是否仓库、当前分支、用户名/邮箱、改动清单、冲突、合并中状态、远程地址、领先/落后远程 |
 | `git_beginner_setup` | 第一次使用时的初始化：设全局名字/邮箱、默认分支 main、初始化仓库、绑定远程地址 |
 | `git_beginner_pull` | 克隆（无仓库时）/ 拉取（`git pull --no-rebase` 合并方式，绝不改写用户自己的提交） |
 | `git_beginner_conflict` | 冲突向导：列冲突文件 → 三个选择（保留我的 / 保留对方的 / 手动改）→ 自动解决或展示冲突内容 |
 | `git_beginner_commit` | 先预览将提交的文件清单，请用户用一句话说明改动，再执行 `git add -A` + `git commit` |
 | `git_beginner_push` | 上传到远程；首次自动 `-u origin HEAD`；被拒绝提示先拉取；认证失败给通俗说明 |
+
+## 首次使用流程（对小白友好）
+
+1. 第一次问助手“看下 git 现状”，助手会先让你选**平台**：GitHub / GitLab / Gitee / 其他；
+2. 选好后（或用 `git_beginner_platform` 保存），之后所有步骤（新建仓库、克隆链接、访问令牌等）都会按这个平台一步步引导；
+3. 如果你的仓库已经有远程地址，助手会**自动识别**平台，无需再选；想换平台直接说“改成 GitLab”即可。
 
 ## 安装（对使用 dsh 的人）
 
