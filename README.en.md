@@ -50,6 +50,29 @@
 
 ## 🚀 Quick start (DSH)
 
+### 🤖 One-sentence install (recommended: let an agent do it)
+
+> Send this to your agent (DSH / Claude Code / Cursor …) and let it handle the rest:
+>
+> **"Install the easy-git plugin for me: run the install script from the https://github.com/easysir10/easy-git repo (install.ps1 on Windows, install.sh on macOS/Linux), then tell me how to restart."**
+
+Or run the script yourself:
+
+```powershell
+# Windows: download and run the install script
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/easysir10/easy-git/main/install.ps1 -OutFile install.ps1
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+```bash
+# macOS / Linux
+curl -fsSL https://raw.githubusercontent.com/easysir10/easy-git/main/install.sh -o install.sh && bash install.sh
+```
+
+The script handles everything: **install pnpm → install the plugin → register the startup list**. All you need afterward is to **restart dsh**.
+
+### 📋 Manual install (to understand how it works)
+
 > [!IMPORTANT]
 > Install pnpm first (the downloader behind `dsh plugin`): `npm install -g pnpm`
 

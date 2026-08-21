@@ -50,6 +50,29 @@
 
 ## 🚀 快速开始（DSH）
 
+### 🤖 一句话安装（推荐：让 agent 自己装）
+
+> 把这句话发给你的 agent（DSH / Claude Code / Cursor…），剩下的它来做：
+>
+> **"帮我安装 easy-git 插件：运行 https://github.com/easysir10/easy-git 仓库的安装脚本（Windows 用 install.ps1，macOS/Linux 用 install.sh），装完告诉我怎么重启。"**
+
+也可以自己跑脚本：
+
+```powershell
+# Windows：下载并运行安装脚本
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/easysir10/easy-git/main/install.ps1 -OutFile install.ps1
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+```bash
+# macOS / Linux
+curl -fsSL https://raw.githubusercontent.com/easysir10/easy-git/main/install.sh -o install.sh && bash install.sh
+```
+
+脚本自动完成：**装 pnpm → 装插件 → 登记启动清单**，装完你只需要**重启 dsh**。
+
+### 📋 手动安装（了解原理用）
+
 > [!IMPORTANT]
 > 先安装 pnpm（`dsh plugin` 的下载器）：`npm install -g pnpm`
 
