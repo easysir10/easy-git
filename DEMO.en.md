@@ -1,8 +1,8 @@
 # easy-git Plugin Demo Document
 
-> The foolproof Git assistant — someone who has never used Git or a command line can do everything through plain-language conversation.
+> The beginner-friendly Git assistant — someone who has never used Git or a command line can do everything through plain-language conversation.
 
-- Version: 0.2.3
+- Version: 0.2.4
 - Repository: https://github.com/easysir10/easy-git
 - Works with: GitLab / GitHub / Gitee — any Git hosting platform
 - Installation: see [README.md](README.md) (two steps: `dsh plugin --profile web add` + register in `cordis.patch.yml`)
@@ -218,7 +218,7 @@ One sentence, no commands.
 
 ---
 
-## 4. Foolproof design (safety rails)
+## 4. Beginner-friendly design (safety rails)
 
 | Scenario | What the assistant does |
 | --- | --- |
@@ -247,4 +247,4 @@ A: No. It confirms the remote before pushing; you provide the URL, the assistant
 
 ---
 
-*This plugin turns "Git newbie" into a thing of the past. Issues and suggestions are welcome in the repository.*
+*This plugin makes Git easy for everyone. Issues and suggestions are welcome in the repository.*

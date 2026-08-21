@@ -1,10 +1,10 @@
-# easy-git —— 傻瓜式 git 新手助手（DSH 插件）
+# easy-git —— 新手友好的 git 助手（DSH 插件）
 
 🌐 语言：简体中文（本页）· [English](README.en.md)
 
-> 📖 演示文档：**[DEMO.md](DEMO.md)**（中文）· **[DEMO.en.md](DEMO.en.md)**（English）
+> 📖 演示文档：**[DEMO.md](DEMO.md)**
 
-一个**标准 DSH 插件**（Cordis 插件包），把 git 操作包装成傻瓜式向导，面向完全不会使用 git 的用户。
+一个**标准 DSH 插件**（Cordis 插件包），把 git 操作包装成新手友好的向导，面向完全不会使用 git 的用户。
 **你不需要会任何命令行命令**——全程大白话问答，助手替你执行所有操作。
 主要场景是 GitLab / GitHub，兼容 Gitee 等一切基于 git 的托管平台。
 
@@ -20,7 +20,7 @@
 | `git_beginner_commit` | 先预览将提交的文件清单，请用户用一句话说明改动，再执行 `git add -A` + `git commit` |
 | `git_beginner_push` | 上传到远程；首次自动 `-u origin HEAD`；被拒绝提示先拉取；认证失败给通俗说明 |
 
-## 首次使用流程（对小白友好）
+## 首次使用流程（新手友好）
 
 1. 第一次问助手“看下 git 现状”，助手会先让你选**平台**：GitHub / GitLab / Gitee / 其他；
 2. 选好后（或用 `git_beginner_platform` 保存），之后所有步骤（新建仓库、克隆链接、访问令牌等）都会按这个平台一步步引导；
@@ -43,7 +43,7 @@ dsh plugin --profile web add github:easysir10/easy-git
 ```
 
 然后**重启 dsh**（插件在启动时随组合树挂载）。之后只要对助手说
-“帮我提交 / 拉取 / 推送 / 解决冲突 / 看下 git 现状”，助手就会走这套傻瓜式流程。
+“帮我提交 / 拉取 / 推送 / 解决冲突 / 看下 git 现状”，助手就会走这套简单的引导流程。
 
 > 提示：
 > - 也可以改 `$DSH_HOME/cordis.patch.yml`（home 级补丁，优先级更高），写法相同。

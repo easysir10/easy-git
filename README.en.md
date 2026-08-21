@@ -1,10 +1,10 @@
-# easy-git — Foolproof Git Assistant (DSH Plugin)
+# easy-git — Beginner-Friendly Git Assistant (DSH Plugin)
 
 🌐 Language: English (this page) · [简体中文](README.md)
 
-> 📖 Demo documents: **[DEMO.en.md](DEMO.en.md)** (English) · **[DEMO.md](DEMO.md)** (中文)
+> 📖 Demo documents: **[DEMO.en.md](DEMO.en.md)**
 
-A **standard DSH plugin** (Cordis plugin package) that wraps Git operations into a foolproof,
+A **standard DSH plugin** (Cordis plugin package) that wraps Git operations into a beginner-friendly,
 plain-language assistant for people who have never used Git.
 **You don't need a single command-line command** — everything is done for you through Q&A in plain language.
 Works with GitLab / GitHub and any Git hosting platform (Gitee, etc.).
@@ -70,7 +70,7 @@ registering the seven tools via `ctx.tools.register(defineTool(...))`.
 - **Spawns `git.exe` directly** (`ctx.subprocess`) — no shell involved, so no quoting/escaping problems;
   the Git path resolves via PATH → common install locations, compatible with any Git installation.
 - Built-in timeouts (`ctx.timer` + `terminate()`) and cancellation (`exec.signal`).
-- Foolproof design: commit/pull/push are blocked while conflicts are unresolved; detects `MERGE_HEAD`/`CHERRY_PICK_HEAD`/`REBASE_HEAD`,
+- Beginner-friendly design: commit/pull/push are blocked while conflicts are unresolved; detects `MERGE_HEAD`/`CHERRY_PICK_HEAD`/`REBASE_HEAD`,
   so an in-progress merge can be finished with a commit even when there are no file changes.
 - All prompts are plain Chinese, guiding the user as if they know nothing about Git.
 
